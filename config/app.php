@@ -156,6 +156,22 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
+        Collective\Html\HtmlServiceProvider::class,
+
+        //权限管理
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        //Intervention/image 图片上传
+        Intervention\Image\ImageServiceProvider::class,
+
+    //    Overtrue\LaravelWechat\ServiceProvider::class,
+
+        //编辑器
+        Overtrue\LaravelUEditor\UEditorServiceProvider::class,
+//二维码
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
     ],
 
     /*
@@ -201,6 +217,18 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+
+        //权限管理
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        //图片上传
+        'Image' => Intervention\Image\Facades\Image::class,
+
+       // 'Wechat' => Overtrue\LaravelWechat\Facade::class,
+
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 
