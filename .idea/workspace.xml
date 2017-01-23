@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6946cf84-6172-45df-a36e-204380078019" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
     </list>
     <ignored path="qywechat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +57,8 @@
       <file leaf-file-name="qyWechat.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.96153843">
-              <caret line="323" column="20" selection-start-line="323" selection-start-column="20" selection-end-line="323" selection-end-column="20" />
+            <state vertical-scroll-proportion="-8.038462">
+              <caret line="271" column="20" selection-start-line="271" selection-start-column="20" selection-end-line="271" selection-end-column="20" />
               <folding>
                 <marker date="1484895093000" expanded="true" signature="21210:21351" placeholder="..." />
               </folding>
@@ -71,7 +69,7 @@
       <file leaf-file-name="qyWechatController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30148423">
+            <state vertical-scroll-proportion="0.34786642">
               <caret line="15" column="76" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="76" />
               <folding>
                 <element signature="e#40#66#0#PHP" expanded="true" />
@@ -420,16 +418,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.96153843">
-          <caret line="323" column="20" selection-start-line="323" selection-start-column="20" selection-end-line="323" selection-end-column="20" />
-          <folding>
-            <marker date="1484895093000" expanded="true" signature="21210:21351" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.67300725">
@@ -446,6 +434,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.038462">
+          <caret line="271" column="20" selection-start-line="271" selection-start-column="20" selection-end-line="271" selection-end-column="20" />
+          <folding>
+            <marker date="1484895093000" expanded="true" signature="21210:21351" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.615385">
@@ -456,7 +454,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30148423">
+        <state vertical-scroll-proportion="0.34786642">
           <caret line="15" column="76" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="76" />
           <folding>
             <element signature="e#40#66#0#PHP" expanded="true" />
