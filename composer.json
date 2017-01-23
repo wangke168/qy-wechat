@@ -14,7 +14,8 @@
         "zizaco/entrust": "5.2.x-dev",
         "intervention/image": "^2.3",
         "overtrue/laravel-ueditor": "~1.0",
-        "simplesoftwareio/simple-qrcode": "~1"
+        "simplesoftwareio/simple-qrcode": "~1",
+        "stoneworld/wechat": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
