@@ -172,6 +172,8 @@ return [
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,
 //二维码
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+        Stoneworld\Wechat\server::class,
     ],
 
     /*

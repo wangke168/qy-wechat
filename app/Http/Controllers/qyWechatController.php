@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\qyWeChat\qyWechat;
+//use App\qyWeChat\qyWechat;
 use Illuminate\Http\Request;
-
+use Stoneworld\Wechat\Server;
 use App\Http\Requests;
 
 class qyWechatController extends Controller
@@ -20,19 +20,20 @@ class qyWechatController extends Controller
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
-        $weObj = new qyWechat($options);
-        $ret = $weObj->valid();
-        if (!$ret) {
-            //    logg("验证失败！");
-            var_dump($ret);
-            exit;
-        }
+        $server = new Server($options);
+        $server->on('message', function($message){
+            return "您好!";
+        });
 
-        $f = $weObj->getRev()->getRevFrom();    //获取发送者微信号
+// 您可以直接echo 或者返回给框架
+        echo $server->server();
+        
+
+      /*  $f = $weObj->getRev()->getRevFrom();    //获取发送者微信号
         $t = $weObj->getRevType();                //获取发送的类型
         $d = $weObj->getRevData();                //获取发送的data
         $c = $weObj->getRevContent();            //获取发送的内容
-        $weObj->news($this->Check_tecket($c))->reply();
+        $weObj->news($this->Check_tecket($c))->reply();*/
 
     }
 
