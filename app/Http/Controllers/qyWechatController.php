@@ -19,14 +19,11 @@ class qyWechatController extends Controller
             'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
             'appsecret'=>'8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea', //填写高级调用功能的密钥
 //            'logcallback' => 'logg'
-            'agentid'=>'8', //应用的id
+            'agentid'=>'11', //应用的id
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
         $weObj = new Server($options);
-        $weObj->on('event', function($event) {
-            return Message::make('text')->content(var_export($event, true));
-        });
         $weObj->on('message', function($message) {
             return Message::make('text')->content('您好！');
         });
