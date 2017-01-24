@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 //use App\qyWeChat\qyWechat;
 use Illuminate\Http\Request;
-use Vendor\Stoneworld\Wechat\Server;
+use Stoneworld\Wechat\Server;
+use Stoneworld\Wechat\Message;
+
 use App\Http\Requests;
 
 class qyWechatController extends Controller
@@ -21,13 +23,11 @@ class qyWechatController extends Controller
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
-        $server = new Server($options);
-        $server->on('message', function($message){
-            return "您好!";
+        $weObj = new Server($options);
+        $weObj->on('event', function($event) {
+            return Message::make('text')->content(var_export($event, true));
         });
-
-// 您可以直接echo 或者返回给框架
-        echo $server->server();
+        echo $weObj->server(); //注意, 企业号与普通公众号不同，必须打开验证，不要注释掉
 
 
       /*  $f = $weObj->getRev()->getRevFrom();    //获取发送者微信号

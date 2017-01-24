@@ -173,7 +173,6 @@ return [
 //二维码
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
-//        Stoneworld\Wechat\Server::class,
     ],
 
     /*
