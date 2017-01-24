@@ -27,11 +27,12 @@ class qyWechatController extends Controller
         $weObj->on('event', function($event) {
             return Message::make('text')->content(var_export($event, true));
         });
-        echo $weObj->server(); //注意, 企业号与普通公众号不同，必须打开验证，不要注释掉
-
         $weObj->on('message', function($message) {
             return Message::make('text')->content('您好！');
         });
+        echo $weObj->server(); //注意, 企业号与普通公众号不同，必须打开验证，不要注释掉
+
+
       /*  $f = $weObj->getRev()->getRevFrom();    //获取发送者微信号
         $t = $weObj->getRevType();                //获取发送的类型
         $d = $weObj->getRevData();                //获取发送的data
