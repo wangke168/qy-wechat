@@ -15,8 +15,9 @@ class qyWechatController extends Controller
             'token' => 'jianpiao',    //填写应用接口的Token
             'encodingaeskey' => '4WGM6Jmxyqg05GXkKoNutpVSWGfRHKdwUoLzL6UeVyE',//填写加密用的EncodingAESKey
             'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
-            'debug' => true,
-            'logcallback' => 'logg'
+            'appsecret'=>'8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea', //填写高级调用功能的密钥
+//            'logcallback' => 'logg'
+            'agentid'=>'8', //应用的id
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
