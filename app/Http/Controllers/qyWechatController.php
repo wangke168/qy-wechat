@@ -27,7 +27,7 @@ class qyWechatController extends Controller
 
 // 您可以直接echo 或者返回给框架
         echo $server->server();
-        
+
 
       /*  $f = $weObj->getRev()->getRevFrom();    //获取发送者微信号
         $t = $weObj->getRevType();                //获取发送的类型
