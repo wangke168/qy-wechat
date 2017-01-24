@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 //use App\qyWeChat\qyWechat;
 use Illuminate\Http\Request;
-use Stoneworld\Wechat\Server;
+use Vendor\Stoneworld\Wechat\Server;
 use App\Http\Requests;
 
 class qyWechatController extends Controller
