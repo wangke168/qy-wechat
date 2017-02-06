@@ -11,22 +11,22 @@ use App\Http\Requests;
 
 class qyWechatController extends Controller
 {
-    public function jp()
-    {
-        $options = array(
+  public function jp()
+  {
+    $options = array(
             'token' => 'jianpiao',    //填写应用接口的Token
             'encodingaeskey' => '4WGM6Jmxyqg05GXkKoNutpVSWGfRHKdwUoLzL6UeVyE',//填写加密用的EncodingAESKey
             'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
             'appsecret'=>'8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea', //填写高级调用功能的密钥
 //            'logcallback' => 'logg'
-            'agentid'=>'11', //应用的id
+            'agentid'=>'8', //应用的id
 
-        );
+            );
 //        logg("GET参数为：\n".var_export($_GET,true));
-        $weObj = new Server($options);
-        $weObj->on('message', function($message) {
-            return Message::make('text')->content('您好！');
-        });
+    $weObj = new Server($options);
+    $weObj->on('message', function($message) {
+        return Message::make('text')->content('您好！');
+    });
         echo $weObj->server(); //注意, 企业号与普通公众号不同，必须打开验证，不要注释掉
 
 
@@ -52,7 +52,6 @@ class qyWechatController extends Controller
         $ticketcount = count($data['ticketorder']);
         $inclusivecount = count($data['inclusiveorder']);
         $hotelcount = count($data['hotelorder']);
-
 
         $i = 0;
 
@@ -83,8 +82,8 @@ class qyWechatController extends Controller
                 'Description' => $str,
 //	   		'PicUrl'=>'http://qydev.weixin.qq.com/wiki/skins/common/images/weixin/weixin_wiki_logo.png',
                 'Url' => 'http://weix2.hengdianworld.com/article/articledetail.php?id=44'
-            )
-        );
+                )
+            );
         return $newsData;
     }
 
