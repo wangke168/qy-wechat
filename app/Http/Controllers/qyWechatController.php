@@ -11,11 +11,11 @@ use App\Http\Requests;
 
 class qyWechatController extends Controller
 {
-  public function jp()
+  public function test()
   {
     $options = array(
-            'token' => 'jianpiao',    //填写应用接口的Token
-            'encodingaeskey' => '4WGM6Jmxyqg05GXkKoNutpVSWGfRHKdwUoLzL6UeVyE',//填写加密用的EncodingAESKey
+            'token' => 'test',    //填写应用接口的Token
+            'encodingaeskey' => 'J8TjrnOs3NTJZVpEyz1DNEJdx85hSHEKY6AgixsboMx',//填写加密用的EncodingAESKey
             'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
             'appsecret'=>'8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea', //填写高级调用功能的密钥
 //            'logcallback' => 'logg'
@@ -25,7 +25,7 @@ class qyWechatController extends Controller
 //        logg("GET参数为：\n".var_export($_GET,true));
     $weObj = new Server($options);
     $weObj->on('message', function($message) {
-        return Message::make('text')->content('您好！');
+        return Message::make('text')->content('sda');
     });
         echo $weObj->server(); //注意, 企业号与普通公众号不同，必须打开验证，不要注释掉
 
