@@ -15,7 +15,7 @@ class qyWechatController extends Controller
   {
     $options = array(
             'token' => 'test',    //填写应用接口的Token
-            'encodingaeskey' => 'J8TjrnOs3NTJZVpEyz1DNEJdx85hSHEKY6AgixsboMx',//填写加密用的EncodingAESKey
+            'encodingaeskey' => '4WGM6Jmxyqg05GXkKoNutpVSWGfRHKdwUoLzL6UeVyE',//填写加密用的EncodingAESKey
             'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
             'appsecret'=>'8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea', //填写高级调用功能的密钥
 //            'logcallback' => 'logg'

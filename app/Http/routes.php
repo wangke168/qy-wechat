@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::any('/jp', 'qyWechatController@jp');
+Route::any('/test', 'qyWechatController@test');
 
 Route::any('/tglm', 'qyWechatController@tglm');
