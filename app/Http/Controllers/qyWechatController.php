@@ -24,8 +24,10 @@ class qyWechatController extends Controller
             );
 //        logg("GET参数为：\n".var_export($_GET,true));
     $weObj = new Server($options);
+
     $weObj->on('message', function($message) {
-        return Message::make('text')->content('sda');
+//        return Message::make('text')->content('sda');
+        return "您好!";
     });
         echo $weObj->server(); //注意, 企业号与普通公众号不同，必须打开验证，不要注释掉
 
