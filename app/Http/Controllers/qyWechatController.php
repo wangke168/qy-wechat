@@ -28,7 +28,8 @@ class qyWechatController extends Controller
             'encodingaeskey'=>'Eu6T9BjvcKn3m2s2DR87uCAE1M4tnbrqXdJ6nTb7DMh',//填写加密用的EncodingAESKey
             'appid'=>'wx6bb8b192d1dcfe19',	//填写高级调用功能的appid
             'debug'=>false,
-            'logcallback'=>'logg'
+            'logcallback'=>'logg',
+            'agentid' => '8', //应用的id
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
@@ -52,11 +53,11 @@ class qyWechatController extends Controller
         if ($t=="text")
         {
 //            $c = $weObj->getRevContent();			//获取发送的内容
-            $weObj->text("你好！来自星星的：".$f."\n你发送的".$t."类型信息：\n原始信息如下：\n".$c)->reply();
+            $weObj->text("你好！来自星星的：")->reply();
         }
 //logg("-----------------------------------------");
         $weObj->valid();
-        
+
 
     }
 
