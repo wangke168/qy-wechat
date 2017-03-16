@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use EasyWeChat\Foundation\Application;
+
+use Stoneworld\Wechat\Server;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,8 +23,10 @@ class TokenController extends Controller
 //            'logcallback' => 'logg'
             'agentid'=>'8', //应用的id
         ];
-        $app = new Application($options);
+
+        $app = new Server($options);
 // 获取 access token 实例
+     
         $accessToken = $app->access_token; // EasyWeChat\Core\AccessToken 实例
         $token = $accessToken->getToken(); // token 字符串
 //        $token = $accessToken->getToken(true); // 强制重新从微信服务器获取 token.
