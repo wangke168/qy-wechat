@@ -57,7 +57,7 @@ class qyWechatController extends Controller
         if ($t=="text")
         {
 //            $c = $weObj->getRevContent();			//获取发送的内容
-            $weObj->text("你好！来自星星的：".$f."\n你发送的".$t."类型信息：\n原始信息如下：\n".var_export($c['scanresult'],true))->reply();
+            $weObj->text("你好！来自星星的：".$f."\n你发送的".$t."类型信息：\n原始信息如下：\n".$c)->reply();
         }
 //logg("-----------------------------------------");
 
