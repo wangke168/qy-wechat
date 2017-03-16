@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 
-use App\qyWechat\Wechat;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -33,7 +32,7 @@ class qyWechatController extends Controller
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
-        $weObj = new Wechat($options);
+        $weObj = new \Wechat($options);
         $ret=$weObj->valid();
         if (!$ret) {
 //            logg("验证失败！");
