@@ -37,32 +37,10 @@
       <file leaf-file-name="qyWechatController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46339202">
-              <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.41463414">
+              <caret line="28" column="59" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="59" />
               <folding>
-                <element signature="e#69#95#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.653846">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="qyWechat.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="147.11539">
-              <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
-              <folding>
-                <marker date="1484895093000" expanded="true" signature="21210:21351" placeholder="..." />
+                <element signature="e#41#67#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -400,7 +378,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
           <folding>
-            <element signature="e#69#95#0#PHP" expanded="true" />
+            <element signature="e#41#67#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -461,7 +439,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding>
-            <element signature="e#69#95#0#PHP" expanded="true" />
+            <element signature="e#41#67#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -519,7 +497,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="105" selection-start-line="40" selection-start-column="84" selection-end-line="40" selection-end-column="105" />
           <folding>
-            <element signature="e#69#95#0#PHP" expanded="true" />
+            <element signature="e#41#67#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -577,7 +555,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
           <folding>
-            <element signature="e#69#95#0#PHP" expanded="true" />
+            <element signature="e#41#67#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -770,8 +748,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="147.11539">
-          <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.26320666">
+          <caret line="634" column="20" selection-start-line="634" selection-start-column="20" selection-end-line="634" selection-end-column="20" />
           <folding>
             <marker date="1484895093000" expanded="true" signature="21210:21351" placeholder="..." />
           </folding>
@@ -780,7 +758,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.653846">
+        <state vertical-scroll-proportion="0.20852642">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
@@ -788,10 +766,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46339202">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.41463414">
+          <caret line="28" column="59" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="59" />
           <folding>
-            <element signature="e#69#95#0#PHP" expanded="true" />
+            <element signature="e#41#67#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
