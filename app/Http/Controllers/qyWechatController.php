@@ -27,8 +27,8 @@ class qyWechatController extends Controller
             'token'=>'yz43hRyIDGFUdQy3qtaZ0',	//填写应用接口的Token
             'encodingaeskey'=>'Eu6T9BjvcKn3m2s2DR87uCAE1M4tnbrqXdJ6nTb7DMh',//填写加密用的EncodingAESKey
             'appid'=>'wx6bb8b192d1dcfe19',	//填写高级调用功能的appid
-          //  'debug'=>true,
-        //    'logcallback'=>'logg'
+            'debug'=>false,
+            'logcallback'=>'logg'
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
