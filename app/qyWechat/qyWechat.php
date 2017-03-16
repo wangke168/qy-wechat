@@ -1,13 +1,26 @@
 <?php
 
 namespace App\qyWeChat;
+
+
 /**
- * Created by PhpStorm.
- * User: wangke
- * Date: 17/1/20
- * Time: 下午2:27
+ *    微信公众平台企业号PHP-SDK, 官方API类库
+ * @author  binsee <binsee@163.com>
+ * @link https://github.com/binsee/wechat-php-sdk
+ * @version 1.0
+ *  usage:
+ *   $options = array(
+ *            'token'=>'tokenaccesskey', //填写应用接口的Token
+ *            'encodingaeskey'=>'encodingaeskey', //填写加密用的EncodingAESKey
+ *            'appid'=>'wxdk1234567890', //填写高级调用功能的app id
+ *            'appsecret'=>'xxxxxxxxxxxxxxxxxxx', //填写高级调用功能的密钥
+ *            'agentid'=>'1', //应用的id
+ *            'debug'=>false, //调试开关
+ *            '_logcallback'=>'logg', //调试输出方法，需要有一个string类型的参数
+ *        );
+ *
  */
-class qyWechat
+class Wechat
 {
     const MSGTYPE_TEXT = 'text';
     const MSGTYPE_IMAGE = 'image';
@@ -59,26 +72,27 @@ class qyWechat
     private $_receive;
     private $_sendmsg;      //主动发送消息的内容
     private $_text_filter = true;
-    public $debug =  false;
+    public $debug = false;
     public $errCode = 40001;
     public $errMsg = "no access";
     private $_logcallback;
 
     public function __construct($options)
     {
-        $this->token = isset($options['token'])?$options['token']:'';
-        $this->encodingAesKey = isset($options['encodingaeskey'])?$options['encodingaeskey']:'';
-        $this->appid = isset($options['appid'])?$options['appid']:'';
-        $this->appsecret = isset($options['appsecret'])?$options['appsecret']:'';
-        $this->agentid = isset($options['agentid'])?$options['agentid']:'';
-        $this->debug = isset($options['debug'])?$options['debug']:false;
-        $this->_logcallback = isset($options['logcallback'])?$options['logcallback']:false;
+        $this->token = isset($options['token']) ? $options['token'] : '';
+        $this->encodingAesKey = isset($options['encodingaeskey']) ? $options['encodingaeskey'] : '';
+        $this->appid = isset($options['appid']) ? $options['appid'] : '';
+        $this->appsecret = isset($options['appsecret']) ? $options['appsecret'] : '';
+        $this->agentid = isset($options['agentid']) ? $options['agentid'] : '';
+        $this->debug = isset($options['debug']) ? $options['debug'] : false;
+        $this->_logcallback = isset($options['logcallback']) ? $options['logcallback'] : false;
     }
 
-    private function log($log){
+    private function log($log)
+    {
         if ($this->debug && function_exists($this->_logcallback)) {
-            if (is_array($log)) $log = print_r($log,true);
-            return call_user_func($this->_logcallback,$log);
+            if (is_array($log)) $log = print_r($log, true);
+            return call_user_func($this->_logcallback, $log);
         }
     }
 
@@ -87,21 +101,22 @@ class qyWechat
      * @param mixed $data 数据
      * @return string
      */
-    public static function data_to_xml($data) {
+    public static function data_to_xml($data)
+    {
         $xml = '';
         foreach ($data as $key => $val) {
             is_numeric($key) && $key = "item id=\"$key\"";
-            $xml    .=  "<$key>";
-            $xml    .=  ( is_array($val) || is_object($val)) ? self::data_to_xml($val)  : self::xmlSafeStr($val);
-            list($key, ) = explode(' ', $key);
-            $xml    .=  "</$key>";
+            $xml .= "<$key>";
+            $xml .= (is_array($val) || is_object($val)) ? self::data_to_xml($val) : self::xmlSafeStr($val);
+            list($key,) = explode(' ', $key);
+            $xml .= "</$key>";
         }
         return $xml;
     }
 
     public static function xmlSafeStr($str)
     {
-        return '<![CDATA['.preg_replace("/[\\x00-\\x08\\x0b-\\x0c\\x0e-\\x1f]/",'',$str).']]>';
+        return '<![CDATA[' . preg_replace("/[\\x00-\\x08\\x0b-\\x0c\\x0e-\\x1f]/", '', $str) . ']]>';
     }
 
     /**
@@ -110,23 +125,24 @@ class qyWechat
      * @param string $root 根节点名
      * @param string $item 数字索引的子节点名
      * @param string $attr 根节点属性
-     * @param string $id   数字索引子节点key转换的属性名
+     * @param string $id 数字索引子节点key转换的属性名
      * @param string $encoding 数据编码
      * @return string
      */
-    public function xml_encode($data, $root='xml', $item='item', $attr='', $id='id', $encoding='utf-8') {
-        if(is_array($attr)){
+    public function xml_encode($data, $root = 'xml', $item = 'item', $attr = '', $id = 'id', $encoding = 'utf-8')
+    {
+        if (is_array($attr)) {
             $_attr = array();
             foreach ($attr as $key => $value) {
                 $_attr[] = "{$key}=\"{$value}\"";
             }
             $attr = implode(' ', $_attr);
         }
-        $attr   = trim($attr);
-        $attr   = empty($attr) ? '' : " {$attr}";
-        $xml   = "<{$root}{$attr}>";
-        $xml   .= self::data_to_xml($data, $item, $id);
-        $xml   .= "</{$root}>";
+        $attr = trim($attr);
+        $attr = empty($attr) ? '' : " {$attr}";
+        $xml = "<{$root}{$attr}>";
+        $xml .= self::data_to_xml($data, $item, $id);
+        $xml .= "</{$root}>";
         return $xml;
     }
 
@@ -135,45 +151,46 @@ class qyWechat
      * 微信api不支持中文转义的json结构
      * @param array $arr
      */
-    static function json_encode($arr) {
-        $parts = array ();
+    static function json_encode($arr)
+    {
+        $parts = array();
         $is_list = false;
         //Find out if the given array is a numerical array
-        $keys = array_keys ( $arr );
-        $max_length = count ( $arr ) - 1;
-        if (($keys [0] === 0) && ($keys [$max_length] === $max_length )) { //See if the first key is 0 and last key is length - 1
+        $keys = array_keys($arr);
+        $max_length = count($arr) - 1;
+        if (($keys [0] === 0) && ($keys [$max_length] === $max_length)) { //See if the first key is 0 and last key is length - 1
             $is_list = true;
-            for($i = 0; $i < count ( $keys ); $i ++) { //See if each key correspondes to its position
+            for ($i = 0; $i < count($keys); $i++) { //See if each key correspondes to its position
                 if ($i != $keys [$i]) { //A key fails at position check.
                     $is_list = false; //It is an associative array.
                     break;
                 }
             }
         }
-        foreach ( $arr as $key => $value ) {
-            if (is_array ( $value )) { //Custom handling for arrays
+        foreach ($arr as $key => $value) {
+            if (is_array($value)) { //Custom handling for arrays
                 if ($is_list)
-                    $parts [] = self::json_encode ( $value ); /* :RECURSION: */
+                    $parts [] = self::json_encode($value); /* :RECURSION: */
                 else
-                    $parts [] = '"' . $key . '":' . self::json_encode ( $value ); /* :RECURSION: */
+                    $parts [] = '"' . $key . '":' . self::json_encode($value); /* :RECURSION: */
             } else {
                 $str = '';
-                if (! $is_list)
+                if (!$is_list)
                     $str = '"' . $key . '":';
                 //Custom handling for multiple data types
-                if (is_numeric ( $value ) && $value<2000000000)
+                if (is_numeric($value) && $value < 2000000000)
                     $str .= $value; //Numbers
                 elseif ($value === false)
                     $str .= 'false'; //The booleans
                 elseif ($value === true)
                     $str .= 'true';
                 else
-                    $str .= '"' . addslashes ( $value ) . '"'; //All other things
+                    $str .= '"' . addslashes($value) . '"'; //All other things
                 // :TODO: Is there any more datatype we should be in the lookout for? (Object?)
                 $parts [] = $str;
             }
         }
-        $json = implode ( ',', $parts );
+        $json = implode(',', $parts);
         if ($is_list)
             return '[' . $json . ']'; //Return numerical JSON
         return '{' . $json . '}'; //Return associative JSON
@@ -184,7 +201,8 @@ class qyWechat
      * @param string $text
      * @return string|mixed
      */
-    private function _auto_text_filter($text) {
+    private function _auto_text_filter($text)
+    {
         if (!$this->_text_filter) return $text;
         return str_replace("\r\n", "\n", $text);
     }
@@ -193,20 +211,21 @@ class qyWechat
      * GET 请求
      * @param string $url
      */
-    private function http_get($url){
+    private function http_get($url)
+    {
         $oCurl = curl_init();
-        if(stripos($url,"https://")!==FALSE){
+        if (stripos($url, "https://") !== FALSE) {
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, FALSE);
         }
         curl_setopt($oCurl, CURLOPT_URL, $url);
-        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
         $sContent = curl_exec($oCurl);
         $aStatus = curl_getinfo($oCurl);
         curl_close($oCurl);
-        if(intval($aStatus["http_code"])==200){
+        if (intval($aStatus["http_code"]) == 200) {
             return $sContent;
-        }else{
+        } else {
             return false;
         }
     }
@@ -217,9 +236,10 @@ class qyWechat
      * @param array $param
      * @return string content
      */
-    private function http_post($url,$param){
+    private function http_post($url, $param)
+    {
         $oCurl = curl_init();
-        if(stripos($url,"https://")!==FALSE){
+        if (stripos($url, "https://") !== FALSE) {
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
         }
@@ -227,21 +247,21 @@ class qyWechat
             $strPOST = $param;
         } else {
             $aPOST = array();
-            foreach($param as $key=>$val){
-                $aPOST[] = $key."=".urlencode($val);
+            foreach ($param as $key => $val) {
+                $aPOST[] = $key . "=" . urlencode($val);
             }
-            $strPOST =  join("&", $aPOST);
+            $strPOST = join("&", $aPOST);
         }
         curl_setopt($oCurl, CURLOPT_URL, $url);
-        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
-        curl_setopt($oCurl, CURLOPT_POST,true);
-        curl_setopt($oCurl, CURLOPT_POSTFIELDS,$strPOST);
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($oCurl, CURLOPT_POST, true);
+        curl_setopt($oCurl, CURLOPT_POSTFIELDS, $strPOST);
         $sContent = curl_exec($oCurl);
         $aStatus = curl_getinfo($oCurl);
         curl_close($oCurl);
-        if(intval($aStatus["http_code"])==200){
+        if (intval($aStatus["http_code"]) == 200) {
             return $sContent;
-        }else{
+        } else {
             return false;
         }
     }
@@ -251,16 +271,16 @@ class qyWechat
      */
     private function checkSignature($str)
     {
-        $signature = isset($_GET["msg_signature"])?$_GET["msg_signature"]:'';
-        $timestamp = isset($_GET["timestamp"])?$_GET["timestamp"]:'';
-        $nonce = isset($_GET["nonce"])?$_GET["nonce"]:'';
-        $tmpArr = array($str,$this->token, $timestamp, $nonce);//比普通公众平台多了一个加密的密文
+        $signature = isset($_GET["msg_signature"]) ? $_GET["msg_signature"] : '';
+        $timestamp = isset($_GET["timestamp"]) ? $_GET["timestamp"] : '';
+        $nonce = isset($_GET["nonce"]) ? $_GET["nonce"] : '';
+        $tmpArr = array($str, $this->token, $timestamp, $nonce);//比普通公众平台多了一个加密的密文
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode($tmpArr);
         $shaStr = sha1($tmpStr);
-        if( $shaStr == $signature ){
+        if ($shaStr == $signature) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -269,23 +289,23 @@ class qyWechat
      * 微信验证，包括post来的xml解密
      * @param bool $return 是否返回
      */
-    public function valid($return=false)
+    public function valid($return = false)
     {
-        $encryptStr="";
+        $encryptStr = "";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $postStr = file_get_contents("php://input");
             $array = (array)simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $this->log($postStr);
             if (isset($array['Encrypt'])) {
                 $encryptStr = $array['Encrypt'];
-                $this->agentidxml = isset($array['AgentID']) ? $array['AgentID']: '';
+                $this->agentidxml = isset($array['AgentID']) ? $array['AgentID'] : '';
             }
         } else {
-            $encryptStr = isset($_GET["echostr"]) ? $_GET["echostr"]: '';
+            $encryptStr = isset($_GET["echostr"]) ? $_GET["echostr"] : '';
 
         }
         if ($encryptStr) {
-            $ret=$this->checkSignature($encryptStr);
+            $ret = $this->checkSignature($encryptStr);
         }
         if (!isset($ret) || !$ret) {
             if (!$return) {
@@ -295,7 +315,7 @@ class qyWechat
             }
         }
         $pc = new Prpcrypt($this->encodingAesKey);
-        $array = $pc->decrypt($encryptStr,$this->appid);
+        $array = $pc->decrypt($encryptStr, $this->appid);
         if (!isset($array[0]) || ($array[0] != 0)) {
             if (!$return) {
                 die('解密失败！');
@@ -306,7 +326,7 @@ class qyWechat
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $this->postxml = $array[1];
             //$this->log($array[1]);
-            return ($this->postxml!="");
+            return ($this->postxml != "");
         } else {
             $echoStr = $array[1];
             if ($return) {
@@ -329,7 +349,7 @@ class qyWechat
         if (!empty($postStr)) {
             $this->_receive = (array)simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             if (!isset($this->_receive['AgentID'])) {
-                $this->_receive['AgentID']=$this->agentidxml; //当前接收消息的应用id
+                $this->_receive['AgentID'] = $this->agentidxml; //当前接收消息的应用id
             }
         }
         return $this;
@@ -354,7 +374,8 @@ class qyWechat
     /**
      * 获取消息发送者
      */
-    public function getRevFrom() {
+    public function getRevFrom()
+    {
         if (isset($this->_receive['FromUserName']))
             return $this->_receive['FromUserName'];
         else
@@ -364,7 +385,8 @@ class qyWechat
     /**
      * 获取消息接受者
      */
-    public function getRevTo() {
+    public function getRevTo()
+    {
         if (isset($this->_receive['ToUserName']))
             return $this->_receive['ToUserName'];
         else
@@ -374,7 +396,8 @@ class qyWechat
     /**
      * 获取接收消息的应用id
      */
-    public function getRevAgentID() {
+    public function getRevAgentID()
+    {
         if (isset($this->_receive['AgentID']))
             return $this->_receive['AgentID'];
         else
@@ -384,7 +407,8 @@ class qyWechat
     /**
      * 获取接收消息的类型
      */
-    public function getRevType() {
+    public function getRevType()
+    {
         if (isset($this->_receive['MsgType']))
             return $this->_receive['MsgType'];
         else
@@ -394,7 +418,8 @@ class qyWechat
     /**
      * 获取消息ID
      */
-    public function getRevID() {
+    public function getRevID()
+    {
         if (isset($this->_receive['MsgId']))
             return $this->_receive['MsgId'];
         else
@@ -404,7 +429,8 @@ class qyWechat
     /**
      * 获取消息发送时间
      */
-    public function getRevCtime() {
+    public function getRevCtime()
+    {
         if (isset($this->_receive['CreateTime']))
             return $this->_receive['CreateTime'];
         else
@@ -414,7 +440,8 @@ class qyWechat
     /**
      * 获取接收消息内容正文
      */
-    public function getRevContent(){
+    public function getRevContent()
+    {
         if (isset($this->_receive['Content']))
             return $this->_receive['Content'];
         else
@@ -424,11 +451,12 @@ class qyWechat
     /**
      * 获取接收消息图片
      */
-    public function getRevPic(){
+    public function getRevPic()
+    {
         if (isset($this->_receive['PicUrl']))
             return array(
-                'mediaid'=>$this->_receive['MediaId'],
-                'picurl'=>(string)$this->_receive['PicUrl'],    //防止picurl为空导致解析出错
+                'mediaid' => $this->_receive['MediaId'],
+                'picurl' => (string)$this->_receive['PicUrl'],    //防止picurl为空导致解析出错
             );
         else
             return false;
@@ -437,13 +465,14 @@ class qyWechat
     /**
      * 获取接收地理位置
      */
-    public function getRevGeo(){
-        if (isset($this->_receive['Location_X'])){
+    public function getRevGeo()
+    {
+        if (isset($this->_receive['Location_X'])) {
             return array(
-                'x'=>$this->_receive['Location_X'],
-                'y'=>$this->_receive['Location_Y'],
-                'scale'=>(string)$this->_receive['Scale'],
-                'label'=>(string)$this->_receive['Label']
+                'x' => $this->_receive['Location_X'],
+                'y' => $this->_receive['Location_Y'],
+                'scale' => (string)$this->_receive['Scale'],
+                'label' => (string)$this->_receive['Label']
             );
         } else
             return false;
@@ -452,12 +481,13 @@ class qyWechat
     /**
      * 获取上报地理位置事件
      */
-    public function getRevEventGeo(){
-        if (isset($this->_receive['Latitude'])){
+    public function getRevEventGeo()
+    {
+        if (isset($this->_receive['Latitude'])) {
             return array(
-                'x'=>$this->_receive['Latitude'],
-                'y'=>$this->_receive['Longitude'],
-                'precision'=>$this->_receive['Precision'],
+                'x' => $this->_receive['Latitude'],
+                'y' => $this->_receive['Longitude'],
+                'precision' => $this->_receive['Precision'],
             );
         } else
             return false;
@@ -466,11 +496,12 @@ class qyWechat
     /**
      * 获取接收事件推送
      */
-    public function getRevEvent(){
-        if (isset($this->_receive['Event'])){
+    public function getRevEvent()
+    {
+        if (isset($this->_receive['Event'])) {
             $array['event'] = $this->_receive['Event'];
         }
-        if (isset($this->_receive['EventKey'])){
+        if (isset($this->_receive['EventKey'])) {
             $array['key'] = $this->_receive['EventKey'];
         }
         if (isset($array) && count($array) > 0) {
@@ -479,23 +510,25 @@ class qyWechat
             return false;
         }
     }
+
     /**
      * 获取接收扫码事件推送
      */
-    public function getRevScanEvent(){
-        if (isset($this->_receive['Event'])){
+    public function getRevScanEvent()
+    {
+        if (isset($this->_receive['Event'])) {
             $array['event'] = $this->_receive['Event'];
         }
-        if (isset($this->_receive['EventKey'])){
+        if (isset($this->_receive['EventKey'])) {
             $array['key'] = $this->_receive['EventKey'];
         }
-        if (isset($this->_receive['ScanCodeInfo'])){
+        if (isset($this->_receive['ScanCodeInfo'])) {
 //			$array['scancodeinfo'] = $this->_receive['ScanCodeInfo'];
 //			$array['scanresult'] = $this->_receive['ScanResult'];
-            $array['scancodeinfo']=(array)$this->_receive['ScanCodeInfo'];
+            $array['scancodeinfo'] = (array)$this->_receive['ScanCodeInfo'];
             $array['scanresult'] = $array['scancodeinfo']['ScanResult'];
         }
-        if (isset($this->_receive['ScanCodeInfo']['ScanResult'])){
+        if (isset($this->_receive['ScanCodeInfo']['ScanResult'])) {
             //		$array['scanresult'] = $this->_receive['ScanCodeInfo']['ScanResult'];
         }
         if (isset($array) && count($array) > 0) {
@@ -519,11 +552,12 @@ class qyWechat
     /**
      * 获取接收语音推送
      */
-    public function getRevVoice(){
-        if (isset($this->_receive['MediaId'])){
+    public function getRevVoice()
+    {
+        if (isset($this->_receive['MediaId'])) {
             return array(
-                'mediaid'=>$this->_receive['MediaId'],
-                'format'=>$this->_receive['Format'],
+                'mediaid' => $this->_receive['MediaId'],
+                'format' => $this->_receive['Format'],
             );
         } else
             return false;
@@ -532,11 +566,12 @@ class qyWechat
     /**
      * 获取接收视频推送
      */
-    public function getRevVideo(){
-        if (isset($this->_receive['MediaId'])){
+    public function getRevVideo()
+    {
+        if (isset($this->_receive['MediaId'])) {
             return array(
-                'mediaid'=>$this->_receive['MediaId'],
-                'thumbmediaid'=>$this->_receive['ThumbMediaId']
+                'mediaid' => $this->_receive['MediaId'],
+                'thumbmediaid' => $this->_receive['ThumbMediaId']
             );
         } else
             return false;
@@ -547,14 +582,14 @@ class qyWechat
      * Examle: $obj->text('hello')->reply();
      * @param string $text
      */
-    public function text($text='')
+    public function text($text = '')
     {
         $msg = array(
             'ToUserName' => $this->getRevFrom(),
-            'FromUserName'=>$this->getRevTo(),
-            'MsgType'=>self::MSGTYPE_TEXT,
-            'Content'=>$this->_auto_text_filter($text),
-            'CreateTime'=>time(),
+            'FromUserName' => $this->getRevTo(),
+            'MsgType' => self::MSGTYPE_TEXT,
+            'Content' => $this->_auto_text_filter($text),
+            'CreateTime' => time(),
         );
         $this->Message($msg);
         return $this;
@@ -565,14 +600,14 @@ class qyWechat
      * Examle: $obj->image('media_id')->reply();
      * @param string $mediaid
      */
-    public function image($mediaid='')
+    public function image($mediaid = '')
     {
         $msg = array(
             'ToUserName' => $this->getRevFrom(),
-            'FromUserName'=>$this->getRevTo(),
-            'MsgType'=>self::MSGTYPE_IMAGE,
-            'Image'=>array('MediaId'=>$mediaid),
-            'CreateTime'=>time(),
+            'FromUserName' => $this->getRevTo(),
+            'MsgType' => self::MSGTYPE_IMAGE,
+            'Image' => array('MediaId' => $mediaid),
+            'CreateTime' => time(),
         );
         $this->Message($msg);
         return $this;
@@ -583,14 +618,14 @@ class qyWechat
      * Examle: $obj->voice('media_id')->reply();
      * @param string $mediaid
      */
-    public function voice($mediaid='')
+    public function voice($mediaid = '')
     {
         $msg = array(
             'ToUserName' => $this->getRevFrom(),
-            'FromUserName'=>$this->getRevTo(),
-            'MsgType'=>self::MSGTYPE_IMAGE,
-            'Voice'=>array('MediaId'=>$mediaid),
-            'CreateTime'=>time(),
+            'FromUserName' => $this->getRevTo(),
+            'MsgType' => self::MSGTYPE_IMAGE,
+            'Voice' => array('MediaId' => $mediaid),
+            'CreateTime' => time(),
         );
         $this->Message($msg);
         return $this;
@@ -601,18 +636,18 @@ class qyWechat
      * Examle: $obj->video('media_id','title','description')->reply();
      * @param string $mediaid
      */
-    public function video($mediaid='',$title,$description)
+    public function video($mediaid = '', $title, $description)
     {
         $msg = array(
             'ToUserName' => $this->getRevFrom(),
-            'FromUserName'=>$this->getRevTo(),
-            'MsgType'=>self::MSGTYPE_IMAGE,
-            'Video'=>array(
-                'MediaId'=>$mediaid,
-                'Title'=>$mediaid,
-                'Description'=>$mediaid,
+            'FromUserName' => $this->getRevTo(),
+            'MsgType' => self::MSGTYPE_IMAGE,
+            'Video' => array(
+                'MediaId' => $mediaid,
+                'Title' => $mediaid,
+                'Description' => $mediaid,
             ),
-            'CreateTime'=>time(),
+            'CreateTime' => time(),
         );
         $this->Message($msg);
         return $this;
@@ -623,27 +658,27 @@ class qyWechat
      * @param array $newsData
      * 数组结构:
      *  array(
-     *  	"0"=>array(
-     *  		'Title'=>'msg title',
-     *  		'Description'=>'summary text',
-     *  		'PicUrl'=>'http://www.domain.com/1.jpg',
-     *  		'Url'=>'http://www.domain.com/1.html'
-     *  	),
-     *  	"1"=>....
+     *    "0"=>array(
+     *        'Title'=>'msg title',
+     *        'Description'=>'summary text',
+     *        'PicUrl'=>'http://www.domain.com/1.jpg',
+     *        'Url'=>'http://www.domain.com/1.html'
+     *    ),
+     *    "1"=>....
      *  )
      */
-    public function news($newsData=array())
+    public function news($newsData = array())
     {
 
         $count = count($newsData);
 
         $msg = array(
             'ToUserName' => $this->getRevFrom(),
-            'FromUserName'=>$this->getRevTo(),
-            'MsgType'=>self::MSGTYPE_NEWS,
-            'CreateTime'=>time(),
-            'ArticleCount'=>$count,
-            'Articles'=>$newsData,
+            'FromUserName' => $this->getRevTo(),
+            'MsgType' => self::MSGTYPE_NEWS,
+            'CreateTime' => time(),
+            'ArticleCount' => $count,
+            'Articles' => $newsData,
 
         );
         $this->Message($msg);
@@ -655,12 +690,13 @@ class qyWechat
      * @param array $msg 消息数组
      * @param bool $append 是否在原消息数组追加
      */
-    public function Message($msg = '',$append = false){
+    public function Message($msg = '', $append = false)
+    {
         if (is_null($msg)) {
-            $this->_msg =array();
-        }elseif (is_array($msg)) {
+            $this->_msg = array();
+        } elseif (is_array($msg)) {
             if ($append)
-                $this->_msg = array_merge($this->_msg,$msg);
+                $this->_msg = array_merge($this->_msg, $msg);
             else
                 $this->_msg = $msg;
             return $this->_msg;
@@ -676,11 +712,11 @@ class qyWechat
      * @param string $msg 要发送的信息, 默认取$this->_msg
      * @param bool $return 是否返回信息而不抛出到浏览器 默认:否
      */
-    public function reply($msg=array(),$return = false)
+    public function reply($msg = array(), $return = false)
     {
         if (empty($msg))
             $msg = $this->_msg;
-        $xmldata=  $this->xml_encode($msg);
+        $xmldata = $this->xml_encode($msg);
         $this->log($xmldata);
         $pc = new Prpcrypt($this->encodingAesKey);
         $array = $pc->encrypt($xmldata, $this->appid);
@@ -690,9 +726,9 @@ class qyWechat
             return false;
         }
         $timestamp = time();
-        $nonce = rand(77,999)*rand(605,888)*rand(11,99);
+        $nonce = rand(77, 999) * rand(605, 888) * rand(11, 99);
         $encrypt = $array[1];
-        $tmpArr = array($this->token, $timestamp, $nonce,$encrypt);//比普通公众平台多了一个加密的密文
+        $tmpArr = array($this->token, $timestamp, $nonce, $encrypt);//比普通公众平台多了一个加密的密文
         sort($tmpArr, SORT_STRING);
         $signature = implode($tmpArr);
         $signature = sha1($signature);
@@ -700,11 +736,11 @@ class qyWechat
         $this->log($smsg);
         if ($return)
             return $smsg;
-        elseif ($smsg){
+        elseif ($smsg) {
             echo $smsg;
             return true;
 
-        }else
+        } else
             return false;
     }
 
@@ -727,27 +763,27 @@ class qyWechat
      * @param string $appsecret
      * @param string $token 手动指定access_token，非必要情况不建议用
      */
-    public function checkAuth($appid='',$appsecret='',$token=''){
+    public function checkAuth($appid = '', $appsecret = '', $token = '')
+    {
         if (!$appid || !$appsecret) {
             $appid = $this->appid;
             $appsecret = $this->appsecret;
         }
         if ($token) { //手动指定token，优先使用
-            $this->access_token=$token;
+            $this->access_token = $token;
             return $this->access_token;
         }
         //TODO: get the cache access_token
-        $result = $this->http_get(self::API_URL_PREFIX.self::TOKEN_GET_URL.'corpid='.$appid.'&corpsecret='.$appsecret);
-        if ($result)
-        {
-            $json = json_decode($result,true);
+        $result = $this->http_get(self::API_URL_PREFIX . self::TOKEN_GET_URL . 'corpid=' . $appid . '&corpsecret=' . $appsecret);
+        if ($result) {
+            $json = json_decode($result, true);
             if (!$json || isset($json['errcode'])) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
             }
             $this->access_token = $json['access_token'];
-            $expire = $json['expires_in'] ? intval($json['expires_in'])-100 : 3600;
+            $expire = $json['expires_in'] ? intval($json['expires_in']) - 100 : 3600;
             //TODO: cache access_token
             return $this->access_token;
         }
@@ -758,7 +794,8 @@ class qyWechat
      * 删除验证数据
      * @param string $appid
      */
-    public function resetAuth($appid=''){
+    public function resetAuth($appid = '')
+    {
         if (!$appid) $appid = $this->appid;
         $this->access_token = '';
         //TODO: remove cache
@@ -769,50 +806,50 @@ class qyWechat
      * 创建菜单
      * @param array $data 菜单数组数据
      * example:
-     * 	array (
-     * 	    'button' => array (
-     * 	      0 => array (
-     * 	        'name' => '扫码',
-     * 	        'sub_button' => array (
-     * 	            0 => array (
-     * 	              'type' => 'scancode_waitmsg',
-     * 	              'name' => '扫码带提示',
-     * 	              'key' => 'rselfmenu_0_0',
-     * 	              'sub_button' => ''
-     * 	            ),
-     * 	            1 => array (
-     * 	              'type' => 'scancode_push',
-     * 	              'name' => '扫码推事件',
-     * 	              'key' => 'rselfmenu_0_1',
-     * 	              'sub_button' => ''
-     * 	            ),
-     * 	        ),
-     * 	      ),
-     * 	      1 => array (
-     * 	        'name' => '发图',
-     * 	        'sub_button' => array (
-     * 	            0 => array (
-     * 	              'type' => 'pic_sysphoto',
-     * 	              'name' => '系统拍照发图',
-     * 	              'key' => 'rselfmenu_1_0',
-     * 	              'sub_button' => ''
-     * 	            ),
-     * 	            1 => array (
-     * 	              'type' => 'pic_photo_or_album',
-     * 	              'name' => '拍照或者相册发图',
-     * 	              'key' => 'rselfmenu_1_1',
-     * 	              'sub_button' => ''
-     * 	            )
-     * 	        ),
-     * 	      ),
-     * 	      2 => array (
-     * 	        'type' => 'location_select',
-     * 	        'name' => '发送位置',
-     * 	        'key' => 'rselfmenu_2_0',
-     * 	        'sub_button' => ''
-     * 	      ),
-     * 	    ),
-     * 	)
+     *    array (
+     *        'button' => array (
+     *          0 => array (
+     *            'name' => '扫码',
+     *            'sub_button' => array (
+     *                0 => array (
+     *                  'type' => 'scancode_waitmsg',
+     *                  'name' => '扫码带提示',
+     *                  'key' => 'rselfmenu_0_0',
+     *                  'sub_button' => ''
+     *                ),
+     *                1 => array (
+     *                  'type' => 'scancode_push',
+     *                  'name' => '扫码推事件',
+     *                  'key' => 'rselfmenu_0_1',
+     *                  'sub_button' => ''
+     *                ),
+     *            ),
+     *          ),
+     *          1 => array (
+     *            'name' => '发图',
+     *            'sub_button' => array (
+     *                0 => array (
+     *                  'type' => 'pic_sysphoto',
+     *                  'name' => '系统拍照发图',
+     *                  'key' => 'rselfmenu_1_0',
+     *                  'sub_button' => ''
+     *                ),
+     *                1 => array (
+     *                  'type' => 'pic_photo_or_album',
+     *                  'name' => '拍照或者相册发图',
+     *                  'key' => 'rselfmenu_1_1',
+     *                  'sub_button' => ''
+     *                )
+     *            ),
+     *          ),
+     *          2 => array (
+     *            'type' => 'location_select',
+     *            'name' => '发送位置',
+     *            'key' => 'rselfmenu_2_0',
+     *            'sub_button' => ''
+     *          ),
+     *        ),
+     *    )
      * type可以选择为以下几种，只是目前企业号3-8的类型不能收到事件消息，但可以达到效果。
      * 1、click：点击推事件
      * 2、view：跳转URL
@@ -823,16 +860,16 @@ class qyWechat
      * 7、pic_weixin：弹出微信相册发图器
      * 8、location_select：弹出地理位置选择器
      */
-    public function createMenu($data,$agentid=''){
-        if ($agentid=='') {
-            $agentid=$this->agentid;
+    public function createMenu($data, $agentid = '')
+    {
+        if ($agentid == '') {
+            $agentid = $this->agentid;
         }
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::MENU_CREATE_URL.'access_token='.$this->access_token.'&agentid='.$agentid,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::MENU_CREATE_URL . 'access_token=' . $this->access_token . '&agentid=' . $agentid, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -846,16 +883,16 @@ class qyWechat
      * 获取菜单
      * @return array('menu'=>array(....s))
      */
-    public function getMenu($agentid=''){
-        if ($agentid=='') {
-            $agentid=$this->agentid;
+    public function getMenu($agentid = '')
+    {
+        if ($agentid == '') {
+            $agentid = $this->agentid;
         }
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::MENU_GET_URL.'access_token='.$this->access_token.'&agentid='.$agentid);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || isset($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::MENU_GET_URL . 'access_token=' . $this->access_token . '&agentid=' . $agentid);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || isset($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -869,15 +906,15 @@ class qyWechat
      * 删除菜单
      * @return boolean
      */
-    public function deleteMenu($agentid=''){
-        if ($agentid=='') {
-            $agentid=$this->agentid;
+    public function deleteMenu($agentid = '')
+    {
+        if ($agentid == '') {
+            $agentid = $this->agentid;
         }
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::MENU_DELETE_URL.'access_token='.$this->access_token.'&agentid='.$agentid);
-        if ($result)
-        {
-            $json = json_decode($result,true);
+        $result = $this->http_get(self::API_URL_PREFIX . self::MENU_DELETE_URL . 'access_token=' . $this->access_token . '&agentid=' . $agentid);
+        if ($result) {
+            $json = json_decode($result, true);
             if (!$json || !empty($json['errcode'])) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
@@ -900,12 +937,12 @@ class qyWechat
      *    "created_at": "1380000000"
      * }
      */
-    public function uploadMedia($data, $type){
+    public function uploadMedia($data, $type)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::MEDIA_UPLOAD.'access_token='.$this->access_token.'&type='.$type,$data);
-        if ($result)
-        {
-            $json = json_decode($result,true);
+        $result = $this->http_post(self::API_URL_PREFIX . self::MEDIA_UPLOAD . 'access_token=' . $this->access_token . '&type=' . $type, $data);
+        if ($result) {
+            $json = json_decode($result, true);
             if (!$json || !empty($json['errcode'])) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
@@ -921,12 +958,12 @@ class qyWechat
      * @param string $media_id 媒体文件id
      * @return raw data
      */
-    public function getMedia($media_id){
+    public function getMedia($media_id)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::MEDIA_GET_URL.'access_token='.$this->access_token.'&media_id='.$media_id);
-        if ($result)
-        {
-            $json = json_decode($result,true);
+        $result = $this->http_get(self::API_URL_PREFIX . self::MEDIA_GET_URL . 'access_token=' . $this->access_token . '&media_id=' . $media_id);
+        if ($result) {
+            $json = json_decode($result, true);
             if (isset($json['errcode'])) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
@@ -939,7 +976,7 @@ class qyWechat
 
     /**
      * 创建部门
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array (
      *     "name" => "邮箱产品组",   //部门名称
      *     "parentid" => "1"         //父部门id
@@ -953,13 +990,13 @@ class qyWechat
      *   "id": 2               //创建的部门id。
      * }
      */
-    public function createDepartment($data){
+    public function createDepartment($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::DEPARTMENT_CREATE_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::DEPARTMENT_CREATE_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -972,7 +1009,7 @@ class qyWechat
 
     /**
      * 更新部门
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array(
      *     "id" => "1"               //(必须)部门id
      *     "name" =>  "邮箱产品组",   //(非必须)部门名称
@@ -985,13 +1022,13 @@ class qyWechat
      *   "errmsg": "updated"  //对返回码的文本描述内容
      * }
      */
-    public function updateDepartment($data){
+    public function updateDepartment($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::DEPARTMENT_UPDATE_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::DEPARTMENT_UPDATE_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1010,13 +1047,13 @@ class qyWechat
      *   "errmsg": "deleted"  //对返回码的文本描述内容
      * }
      */
-    public function deleteDepartment($id){
+    public function deleteDepartment($id)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::DEPARTMENT_DELETE_URL.'access_token='.$this->access_token.'&id='.$id);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::DEPARTMENT_DELETE_URL . 'access_token=' . $this->access_token . '&id=' . $id);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1030,9 +1067,9 @@ class qyWechat
      * 移动部门
      * @param $data
      * array(
-     *    "department_id" => "5",	//所要移动的部门
-     *    "to_parentid" => "2",		//想移动到的父部门节点，根部门为1
-     *    "to_position" => "1"		//(非必须)想移动到的父部门下的位置，1表示最上方，往后位置为2，3，4，以此类推，默认为1
+     *    "department_id" => "5",    //所要移动的部门
+     *    "to_parentid" => "2",        //想移动到的父部门节点，根部门为1
+     *    "to_position" => "1"        //(非必须)想移动到的父部门下的位置，1表示最上方，往后位置为2，3，4，以此类推，默认为1
      * )
      * @return boolean|array 成功返回结果
      * {
@@ -1040,13 +1077,13 @@ class qyWechat
      *   "errmsg": "ok"  //对返回码的文本描述内容
      * }
      */
-    public function moveDepartment($data){
+    public function moveDepartment($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::DEPARTMENT_MOVE_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::DEPARTMENT_MOVE_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1058,7 +1095,7 @@ class qyWechat
 
     /**
      * 获取部门列表
-     * @return boolean|array	 成功返回结果
+     * @return boolean|array     成功返回结果
      * {
      *    "errcode": 0,
      *    "errmsg": "ok",
@@ -1076,12 +1113,12 @@ class qyWechat
      *    ]
      * }
      */
-    public function getDepartment(){
+    public function getDepartment()
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::DEPARTMENT_LIST_URL.'access_token='.$this->access_token);
-        if ($result)
-        {
-            $json = json_decode($result,true);
+        $result = $this->http_get(self::API_URL_PREFIX . self::DEPARTMENT_LIST_URL . 'access_token=' . $this->access_token);
+        if ($result) {
+            $json = json_decode($result, true);
             if (!$json || !empty($json['errcode'])) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
@@ -1094,7 +1131,7 @@ class qyWechat
 
     /**
      * 创建成员
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array(
      *    "userid" => "zhangsan",
      *    "name" => "张三",
@@ -1113,13 +1150,13 @@ class qyWechat
      *   "errmsg": "created",  //对返回码的文本描述内容
      * }
      */
-    public function createUser($data){
+    public function createUser($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::USER_CREATE_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::USER_CREATE_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1132,7 +1169,7 @@ class qyWechat
 
     /**
      * 更新成员
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array(
      *    "userid" => "zhangsan",
      *    "name" => "张三",
@@ -1150,13 +1187,13 @@ class qyWechat
      *   "errmsg": "updated"  //对返回码的文本描述内容
      * }
      */
-    public function updateUser($data){
+    public function updateUser($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::USER_UPDATE_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::USER_UPDATE_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1175,13 +1212,13 @@ class qyWechat
      *   "errmsg": "deleted"  //对返回码的文本描述内容
      * }
      */
-    public function deleteUser($userid){
+    public function deleteUser($userid)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::USER_DELETE_URL.'access_token='.$this->access_token.'&userid='.$userid);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::USER_DELETE_URL . 'access_token=' . $this->access_token . '&userid=' . $userid);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1194,7 +1231,7 @@ class qyWechat
     /**
      * 获取成员信息
      * @param $userid  员工UserID。对应管理端的帐号
-     * @return boolean|array	 成功返回结果
+     * @return boolean|array     成功返回结果
      * {
      *    "errcode": 0,
      *    "errmsg": "ok",
@@ -1211,13 +1248,13 @@ class qyWechat
      *    "status": 1      //关注状态: 1=已关注，2=已冻结，4=未关注
      * }
      */
-    public function getUserInfo($userid){
+    public function getUserInfo($userid)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::USER_GET_URL.'access_token='.$this->access_token.'&userid='.$userid);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::USER_GET_URL . 'access_token=' . $this->access_token . '&userid=' . $userid);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1230,9 +1267,9 @@ class qyWechat
     /**
      * 获取部门成员
      * @param $department_id   部门id
-     * @param $fetch_child     1/0：是否递归获取子部门下面的成员
-     * @param $status          0获取全部员工，1获取已关注成员列表，2获取禁用成员列表，4获取未关注成员列表。status可叠加
-     * @return boolean|array	 成功返回结果
+     * @param $fetch_child 1/0：是否递归获取子部门下面的成员
+     * @param $status 0获取全部员工，1获取已关注成员列表，2获取禁用成员列表，4获取未关注成员列表。status可叠加
+     * @return boolean|array     成功返回结果
      * {
      *    "errcode": 0,
      *    "errmsg": "ok",
@@ -1244,14 +1281,14 @@ class qyWechat
      *      ]
      * }
      */
-    public function getUserList($department_id,$fetch_child=0,$status=0){
+    public function getUserList($department_id, $fetch_child = 0, $status = 0)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::USER_LIST_URL.'access_token='.$this->access_token
-            .'&department_id='.$department_id.'&fetch_child='.$fetch_child.'&status='.$status);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::USER_LIST_URL . 'access_token=' . $this->access_token
+            . '&department_id=' . $department_id . '&fetch_child=' . $fetch_child . '&status=' . $status);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1269,14 +1306,14 @@ class qyWechat
      * @param $agentid     跳转链接时所在的企业应用ID，未填则默认为当前配置的应用id
      * @return boolean|string 成功返回userid
      */
-    public function getUserId($code,$agentid=0){
-        if (!$agentid) $agentid=$this->agentid;
+    public function getUserId($code, $agentid = 0)
+    {
+        if (!$agentid) $agentid = $this->agentid;
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::USER_GETINFO_URL.'access_token='.$this->access_token.'&code='.$code.'&agentid'.$agentid);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::USER_GETINFO_URL . 'access_token=' . $this->access_token . '&code=' . $code . '&agentid' . $agentid);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1288,7 +1325,7 @@ class qyWechat
 
     /**
      * 创建标签
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array(
      *    "tagname" => "UI"
      * )
@@ -1300,13 +1337,13 @@ class qyWechat
      *   "tagid": "1"
      * }
      */
-    public function createTag($data){
+    public function createTag($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::TAG_CREATE_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::TAG_CREATE_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1318,7 +1355,7 @@ class qyWechat
 
     /**
      * 更新标签
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array(
      *    "tagid" => "1",
      *    "tagname" => "UI design"
@@ -1329,13 +1366,13 @@ class qyWechat
      *   "errmsg": "updated"  //对返回码的文本描述内容
      * }
      */
-    public function updateTag($data){
+    public function updateTag($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::TAG_UPDATE_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::TAG_UPDATE_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1354,13 +1391,13 @@ class qyWechat
      *   "errmsg": "deleted"  //对返回码的文本描述内容
      * }
      */
-    public function deleteTag($tagid){
+    public function deleteTag($tagid)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::TAG_DELETE_URL.'access_token='.$this->access_token.'&tagid='.$tagid);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::TAG_DELETE_URL . 'access_token=' . $this->access_token . '&tagid=' . $tagid);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1373,7 +1410,7 @@ class qyWechat
     /**
      * 获取标签成员
      * @param $tagid  标签TagID
-     * @return boolean|array	 成功返回结果
+     * @return boolean|array     成功返回结果
      * {
      *    "errcode": 0,
      *    "errmsg": "ok",
@@ -1385,13 +1422,13 @@ class qyWechat
      *      ]
      * }
      */
-    public function getTag($tagid){
+    public function getTag($tagid)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::TAG_GET_URL.'access_token='.$this->access_token.'&tagid='.$tagid);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::TAG_GET_URL . 'access_token=' . $this->access_token . '&tagid=' . $tagid);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1403,7 +1440,7 @@ class qyWechat
 
     /**
      * 增加标签成员
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array (
      *    "tagid" => "1",
      *    "userlist" => array(    //企业员工ID列表
@@ -1419,13 +1456,13 @@ class qyWechat
      *   "invalidlist"："usr1|usr2|usr"     //若部分userid非法，则会有此段。不在权限内的员工ID列表，以“|”分隔
      * }
      */
-    public function addTagUser($data){
+    public function addTagUser($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::TAG_ADDUSER_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::TAG_ADDUSER_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1437,7 +1474,7 @@ class qyWechat
 
     /**
      * 删除标签成员
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array (
      *    "tagid" => "1",
      *    "userlist" => array(    //企业员工ID列表
@@ -1453,13 +1490,13 @@ class qyWechat
      *   "invalidlist"："usr1|usr2|usr"     //若部分userid非法，则会有此段。不在权限内的员工ID列表，以“|”分隔
      * }
      */
-    public function delTagUser($data){
+    public function delTagUser($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::TAG_DELUSER_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::TAG_DELUSER_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1471,13 +1508,13 @@ class qyWechat
 
     /**
      * 主动发送信息接口
-     * @param array $data 	结构体为:
+     * @param array $data 结构体为:
      * array(
      *         "touser" => "UserID1|UserID2|UserID3",
      *         "toparty" => "PartyID1|PartyID2 ",
      *         "totag" => "TagID1|TagID2 ",
-     *         "safe":"0"			//是否为保密消息，对于news无效
-     *         "agentid" => "001",	//应用id
+     *         "safe":"0"            //是否为保密消息，对于news无效
+     *         "agentid" => "001",    //应用id
      *         "msgtype" => "text",  //根据信息类型，选择下面对应的信息结构体
      *
      *         "text" => array(
@@ -1502,7 +1539,7 @@ class qyWechat
      *                 "media_id" => "MEDIA_ID"
      *         ),
      *
-     *         "news" => array(			//不支持保密
+     *         "news" => array(            //不支持保密
      *                 "articles":[
      *                 array(
      *                         "title" => "Title",
@@ -1553,13 +1590,15 @@ class qyWechat
      *    "invalidtag":"TagID1"
      * }
      */
-    public function sendMessage($data){
+
+
+    public function sendMessage($data)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_post(self::API_URL_PREFIX.self::MASS_SEND_URL.'access_token='.$this->access_token,self::json_encode($data));
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_post(self::API_URL_PREFIX . self::MASS_SEND_URL . 'access_token=' . $this->access_token, self::json_encode($data));
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1567,6 +1606,15 @@ class qyWechat
             return $json;
         }
         return false;
+    }
+
+    public function sendMessage_test($data)
+    {
+
+        var_dump(json_encode($data));
+
+        $result = $this->http_post(self::API_URL_PREFIX . self::MASS_SEND_URL . 'access_token=' . $this->get_access_token(), self::json_encode($data));
+        var_dump($result);
     }
 
     /**
@@ -1583,13 +1631,13 @@ class qyWechat
      *   "errmsg": "ok"  //对返回码的文本描述内容
      * }
      */
-    public function authSucc($userid){
+    public function authSucc($userid)
+    {
         if (!$this->access_token && !$this->checkAuth()) return false;
-        $result = $this->http_get(self::API_URL_PREFIX.self::AUTHSUCC_URL.'access_token='.$this->access_token.'&userid='.$userid);
-        if ($result)
-        {
-            $json = json_decode($result,true);
-            if (!$json || !empty($json['errcode']) || $json['errcode']!=0) {
+        $result = $this->http_get(self::API_URL_PREFIX . self::AUTHSUCC_URL . 'access_token=' . $this->access_token . '&userid=' . $userid);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || !empty($json['errcode']) || $json['errcode'] != 0) {
                 $this->errCode = $json['errcode'];
                 $this->errMsg = $json['errmsg'];
                 return false;
@@ -1605,12 +1653,45 @@ class qyWechat
      * @param string $state 重定向后会带上state参数，企业可以填写a-zA-Z0-9的参数值
      * @return string
      */
-    public function getOauthRedirect($callback,$state='STATE',$scope='snsapi_base'){
-        return self::OAUTH_PREFIX.self::OAUTH_AUTHORIZE_URL.'appid='.$this->appid.'&redirect_uri='.urlencode($callback).'&response_type=code&scope='.$scope.'&state='.$state.'#wechat_redirect';
+    public function getOauthRedirect($callback, $state = 'STATE', $scope = 'snsapi_base')
+    {
+        return self::OAUTH_PREFIX . self::OAUTH_AUTHORIZE_URL . 'appid=' . $this->appid . '&redirect_uri=' . urlencode($callback) . '&response_type=code&scope=' . $scope . '&state=' . $state . '#wechat_redirect';
+    }
+
+
+    /*
+* 获取access_token
+* 写到缓存
+*/
+    public function get_access_token($appid = '', $appsecret = '')
+    {
+        if (!$appid || !$appsecret) {
+            $appid = $this->appid;
+            $appsecret = $this->appsecret;
+        }
+
+        $mem = new Memcache;
+        $mem->connect("127.0.0.1", 11211);
+        @$mark_qy_time = $mem->get("mark_qy_time");
+        $access_qy_token = $mem->get("access_qy_token");
+        if (!$mark_qy_time || (time() - $mark_qy_time > 7200) || !$access_qy_token) {
+
+            $result = $this->http_get(self::API_URL_PREFIX . self::TOKEN_GET_URL . 'corpid=' . $appid . '&corpsecret=' . $appsecret);
+            $data = json_decode($result, true);
+            if ($data['access_token']) {
+                $mem->set("access_qy_token", $data['access_token'], 0, 7200);    //设置cache，为下一步提供依据
+                $mem->set("mark_qy_time", time(), 0, 7200);
+                $access_qy_token = $mem->get("access_qy_token");
+                return $access_qy_token;
+            } else {
+                return "获取access_token错误";
+            }
+        } else {
+            return $access_qy_token;
+        }
     }
 
 }
-
 
 
 /**
@@ -1659,6 +1740,7 @@ class PKCS7Encoder
         }
         return substr($text, 0, (strlen($text) - $pad));
     }
+
 
 }
 
@@ -1792,25 +1874,29 @@ class ErrorCode
     public static $EncodeBase64Error = 40009;
     public static $DecodeBase64Error = 40010;
     public static $GenReturnXmlError = 40011;
-    public static $errCode=array(
-        '0'=>'无问题',
-        '40001'=>'签名验证错误',
-        '40002'=>'xml解析失败',
-        '40003'=>'sha加密生成签名失败',
-        '40004'=>'encodingAesKey 非法',
-        '40005'=>'appid 校验错误',
-        '40006'=>'aes 加密失败',
-        '40007'=>'aes 解密失败',
-        '40008'=>'解密后得到的buffer非法',
-        '40009'=>'base64加密失败',
-        '40010'=>'base64解密失败',
-        '40011'=>'生成xml失败',
+    public static $errCode = array(
+        '0' => '无问题',
+        '40001' => '签名验证错误',
+        '40002' => 'xml解析失败',
+        '40003' => 'sha加密生成签名失败',
+        '40004' => 'encodingAesKey 非法',
+        '40005' => 'appid 校验错误',
+        '40006' => 'aes 加密失败',
+        '40007' => 'aes 解密失败',
+        '40008' => '解密后得到的buffer非法',
+        '40009' => 'base64加密失败',
+        '40010' => 'base64解密失败',
+        '40011' => '生成xml失败',
     );
-    public static function getErrText($err) {
+
+    public static function getErrText($err)
+    {
         if (isset(self::$errCode[$err])) {
             return self::$errCode[$err];
-        }else {
+        } else {
             return false;
-        };
+        }
     }
+
+
 }

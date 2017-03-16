@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\qyWeChat\qyWechat;
+use App\qyWeChat\Wechat;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,7 +28,7 @@ class qyWechatController extends Controller
             'appid' => 'wx6bb8b192d1dcfe19', //填写高级调用功能的app id
             'appsecret' => 'H4AyKWaEQiUJg7fQ5abwqrTF_QbjlnzJ8AZlPC_Ll9CiAwote4G-mXOE6C9YDNtj' //填写高级调用功能的密钥
         );
-        $weObj = new qyWechat($options);
+        $weObj = new Wechat($options);
         $weObj->valid();
         $type = $weObj->getRev()->getRevType();
         switch ($type) {
