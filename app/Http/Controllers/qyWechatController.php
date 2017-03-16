@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\qyWeChat\Wechat;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,7 +12,7 @@ class qyWechatController extends Controller
 {
     public function test()
     {
-
+      //  include(app_path() . 'app/qyWechat/qyWechat.php');
         /*$options = array(
             'token' => 'yz43hRyIDGFUdQy3qtaZ0',    //填写应用接口的Token
             'encodingaeskey' => '4WGM6Jmxyqg05GXkKoNutpVSWGfRHKdwUoLzL6UeVyE',//填写加密用的EncodingAESKey
@@ -27,12 +27,12 @@ class qyWechatController extends Controller
             'token'=>'yz43hRyIDGFUdQy3qtaZ0',	//填写应用接口的Token
             'encodingaeskey'=>'Eu6T9BjvcKn3m2s2DR87uCAE1M4tnbrqXdJ6nTb7DMh',//填写加密用的EncodingAESKey
             'appid'=>'wx6bb8b192d1dcfe19',	//填写高级调用功能的appid
-            'debug'=>true,
-            'logcallback'=>'logg'
+          //  'debug'=>true,
+        //    'logcallback'=>'logg'
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
-        $weObj = new Wechat($options);
+        $weObj = new \Wechat($options);
         $ret=$weObj->valid();
         if (!$ret) {
 //            logg("验证失败！");
