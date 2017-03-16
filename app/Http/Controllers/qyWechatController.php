@@ -33,12 +33,7 @@ class qyWechatController extends Controller
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
         $weObj = new \Wechat($options);
-        $ret=$weObj->valid();
-        if (!$ret) {
-//            logg("验证失败！");
-//            var_dump($ret);
-            exit;
-        }
+
         /*
         $f = $weObj->getRev()->getRevFrom();	//获取发送者微信号
         $t = $weObj->getRevType();				//获取发送的类型
@@ -60,7 +55,8 @@ class qyWechatController extends Controller
             $weObj->text("你好！来自星星的：".$f."\n你发送的".$t."类型信息：\n原始信息如下：\n".$c)->reply();
         }
 //logg("-----------------------------------------");
-
+        $weObj->valid();
+        
 
     }
 
