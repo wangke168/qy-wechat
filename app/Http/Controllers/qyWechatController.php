@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stoneworld\Wechat\Server;
 use Stoneworld\Wechat\Message;
-
+use EasyWeChat\Foundation\Application;
 use App\Http\Requests;
 
 class qyWechatController extends Controller
@@ -16,8 +16,8 @@ class qyWechatController extends Controller
     $options = array(
             'token' => 'test',    //填写应用接口的Token
             'encodingaeskey' => '4WGM6Jmxyqg05GXkKoNutpVSWGfRHKdwUoLzL6UeVyE',//填写加密用的EncodingAESKey
-            'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
-            'appsecret'=>'8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea', //填写高级调用功能的密钥
+            'cropid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
+            'cropsecret'=>'8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea', //填写高级调用功能的密钥
 //            'logcallback' => 'logg'
             'agentid'=>'8', //应用的id
 

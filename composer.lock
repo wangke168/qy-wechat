@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "eedbaf4055f8ff0f3143a3e333ecc8d8",
+    "content-hash": "700f811e05e6919bf6d0e899a576348e",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2097,6 +2097,52 @@
                 "wrapper"
             ],
             "time": "2016-12-06T01:39:52+00:00"
+        },
+        {
+            "name": "stoneworld/wechat",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stoneworld/wechat.git",
+                "reference": "4b73b818815de9557341fe7a10f63e0de8a9bb32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stoneworld/wechat/zipball/4b73b818815de9557341fe7a10f63e0de8a9bb32",
+                "reference": "4b73b818815de9557341fe7a10f63e0de8a9bb32",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mcrypt": "*",
+                "monolog/monolog": "^1.17",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stoneworld\\Wechat\\": "src/Wechat/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "stoneworld",
+                    "homepage": "https://github.com/stoneworld",
+                    "role": "Developer"
+                }
+            ],
+            "description": "微信企业号",
+            "homepage": "https://github.com/stoneworld",
+            "keywords": [
+                "wechat"
+            ],
+            "time": "2016-03-07T07:19:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::any('/test', 'qyWechatController@test');
 
 Route::any('/tglm', 'qyWechatController@tglm');
+
+Route::get('token','TokenController@get');
