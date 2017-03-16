@@ -17,7 +17,7 @@ class qyWechatController extends Controller
             'token' => 'test',    //填写应用接口的Token
             'encodingaeskey' => '4WGM6Jmxyqg05GXkKoNutpVSWGfRHKdwUoLzL6UeVyE',//填写加密用的EncodingAESKey
             'cropid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
-            'cropsecret'=>'8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea', //填写高级调用功能的密钥
+            'cropsecret'=>'H4AyKWaEQiUJg7fQ5abwqrTF_QbjlnzJ8AZlPC_Ll9CiAwote4G-mXOE6C9YDNtj', //填写高级调用功能的密钥
 //            'logcallback' => 'logg'
             'agentid'=>'8', //应用的id
 
