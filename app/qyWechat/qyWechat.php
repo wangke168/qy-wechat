@@ -1,5 +1,5 @@
 <?php
-
+namespace App\qyWechat;
 /**
  *    微信公众平台企业号PHP-SDK, 官方API类库
  * @author  binsee <binsee@163.com>
