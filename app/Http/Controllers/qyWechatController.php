@@ -23,23 +23,29 @@ class qyWechatController extends Controller
 
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
-        $weObj = new qyWechat($options); //创建实例对象
-        $ret = $weObj->valid();
+        $weObj = new qyWechat($options);
+        $ret=$weObj->valid();
         if (!$ret) {
-//          logg("验证失败！");
-//          var_dump($ret);
+//            logg("验证失败！");
+            var_dump($ret);
             exit;
         }
-        $f = $weObj->getRev()->getRevFrom();    //获取发送者微信号
-        $t = $weObj->getRevType();                //获取发送的类型
-        $d = $weObj->getRevData();                //获取发送的data
-        if ($t == "text") {
-            $c = $weObj->getRevContent();            //获取发送的内容
-            $weObj->news($this->Check_tecket($c))->reply();
-        } elseif ($t == "event") {
-            $c = $weObj->getRevScanEvent();
-            $weObj->text("你好！来自星星的：" . $f . "\n你发送的" . $t . "类型信息：\n原始信息如下：\n" . var_export($c['scanresult'], true))->reply();
+        /*
+        $f = $weObj->getRev()->getRevFrom();	//获取发送者微信号
+        $t = $weObj->getRevType();				//获取发送的类型
+        $d = $weObj->getRevData();				//获取发送的data
+        if ($t=="text")
+        {
+            $c = $weObj->getRevContent();			//获取发送的内容
+            $weObj->news(Check_tecket($c))->reply();
         }
+        */
+
+        $f = $weObj->getRev()->getRevFrom();	//获取发送者微信号
+        $t = $weObj->getRevType();				//获取发送的类型
+        $d = $weObj->getRevData();				//获取发送的data
+        $c = $weObj->getRevContent();			//获取发送的内容
+        $weObj->news($this->Check_tecket($c))->reply();
     }
 
     //检票口
