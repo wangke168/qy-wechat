@@ -1669,16 +1669,16 @@ class Wechat
 
         $mem = new Memcache;
         $mem->connect("127.0.0.1", 11211);
-        @$mark_qy_time = $mem->get("mark_qy_time");
-        $access_qy_token = $mem->get("access_qy_token");
+        @$mark_qy_time = $mem->get("mark_qy_test_time");
+        $access_qy_token = $mem->get("access_qy_test_token");
         if (!$mark_qy_time || (time() - $mark_qy_time > 7200) || !$access_qy_token) {
 
             $result = $this->http_get(self::API_URL_PREFIX . self::TOKEN_GET_URL . 'corpid=' . $appid . '&corpsecret=' . $appsecret);
             $data = json_decode($result, true);
             if ($data['access_token']) {
-                $mem->set("access_qy_token", $data['access_token'], 0, 7200);    //设置cache，为下一步提供依据
-                $mem->set("mark_qy_time", time(), 0, 7200);
-                $access_qy_token = $mem->get("access_qy_token");
+                $mem->set("access_qy_test_token", $data['access_token'], 0, 7200);    //设置cache，为下一步提供依据
+                $mem->set("mark_qy_test_time", time(), 0, 7200);
+                $access_qy_token = $mem->get("access_qy_test_token");
                 return $access_qy_token;
             } else {
                 return "获取access_token错误";
