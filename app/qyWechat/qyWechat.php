@@ -1675,7 +1675,7 @@ class Wechat
 
             $result = $this->http_get(self::API_URL_PREFIX . self::TOKEN_GET_URL . 'corpid=' . $appid . '&corpsecret=' . $appsecret);
             $data = json_decode($result, true);
-            return $data;
+//            return $data;
             if ($data['access_token']) {
                 $mem->set("access_qy_test_token", $data['access_token'], 0, 7200);    //设置cache，为下一步提供依据
                 $mem->set("mark_qy_test_time", time(), 0, 7200);
