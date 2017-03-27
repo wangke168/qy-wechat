@@ -15,21 +15,17 @@ class TokenController extends Controller
 
     public function get()
     {
-        $options = [
-            'token' => 'test',    //填写应用接口的Token
-            'encodingaeskey' => '4WGM6Jmxyqg05GXkKoNutpVSWGfRHKdwUoLzL6UeVyE',//填写加密用的EncodingAESKey
-            'cropid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
-            'cropsecret'=>'H4AyKWaEQiUJg7fQ5abwqrTF_QbjlnzJ8AZlPC_Ll9CiAwote4G-mXOE6C9YDNtj', //填写高级调用功能的密钥
-//            'logcallback' => 'logg'
-            'agentid'=>'8', //应用的id
-        ];
+        $options = array(
+            'token'=>'yz43hRyIDGFUdQy3qtaZ0',	//填写应用接口的Token
+            'encodingaeskey'=>'Eu6T9BjvcKn3m2s2DR87uCAE1M4tnbrqXdJ6nTb7DMh',//填写加密用的EncodingAESKey
+            'appid'=>'wx6bb8b192d1dcfe19',	//填写高级调用功能的appid
+            'debug'=>false,
+            'logcallback'=>'logg',
+            'agentid' => '8', //应用的id
 
-        $app = new Server($options);
-// 获取 access token 实例
-
-        $accessToken = $app->access_token; // EasyWeChat\Core\AccessToken 实例
-        $token = $accessToken->getToken(); // token 字符串
-//        $token = $accessToken->getToken(true); // 强制重新从微信服务器获取 token.
-return $token;
+        );
+//        logg("GET参数为：\n".var_export($_GET,true));
+        $weObj = new \Wechat($options);
+        return $weObj->get_access_token();
     }
 }
