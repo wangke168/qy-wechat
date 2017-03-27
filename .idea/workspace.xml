@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6946cf84-6172-45df-a36e-204380078019" name="Default" comment="" />
+    <list default="true" id="6946cf84-6172-45df-a36e-204380078019" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/qyWechat/qyWechat.php" afterPath="$PROJECT_DIR$/app/qyWechat/qyWechat.php" />
+    </list>
     <ignored path="qywechat.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -35,10 +37,10 @@
       <file leaf-file-name="qyWechat.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71292776">
-              <caret line="1678" column="19" selection-start-line="1678" selection-start-column="19" selection-end-line="1678" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.736692">
+              <caret line="1680" column="65" selection-start-line="1680" selection-start-column="65" selection-end-line="1680" selection-end-column="65" />
               <folding>
-                <marker date="1490601475000" expanded="true" signature="21973:22114" placeholder="..." />
+                <marker date="1490601657000" expanded="true" signature="21973:22114" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -437,7 +439,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="743" column="31" selection-start-line="743" selection-start-column="28" selection-end-line="743" selection-end-column="31" />
           <folding>
-            <marker date="1490601475000" expanded="true" signature="21973:22114" placeholder="..." />
+            <marker date="1490601657000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -494,7 +496,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding>
-            <marker date="1490601475000" expanded="true" signature="21973:22114" placeholder="..." />
+            <marker date="1490601657000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -551,7 +553,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490601475000" expanded="true" signature="21973:22114" placeholder="..." />
+            <marker date="1490601657000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -768,10 +770,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71292776">
-          <caret line="1678" column="19" selection-start-line="1678" selection-start-column="19" selection-end-line="1678" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.736692">
+          <caret line="1680" column="65" selection-start-line="1680" selection-start-column="65" selection-end-line="1680" selection-end-column="65" />
           <folding>
-            <marker date="1490601475000" expanded="true" signature="21973:22114" placeholder="..." />
+            <marker date="1490601657000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -1677,8 +1677,8 @@ class Wechat
             $data = json_decode($result, true);
 //            return $data;
             if ($data['access_token']) {
-                $mem->set("access_qy_test_token", $data['access_token'], 0, 7200);    //设置cache，为下一步提供依据
-                $mem->set("mark_qy_test_time", time(), 0, 7200);
+                $mem->set("access_qy_test_token", $data['access_token'], 7200-1500);    //设置cache，为下一步提供依据
+                $mem->set("mark_qy_test_time", time(),  7200-1500);
                 $access_qy_token = $mem->get("access_qy_test_token");
                 return $access_qy_token;
             } else {
