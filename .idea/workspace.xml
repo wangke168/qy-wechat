@@ -37,10 +37,10 @@
       <file leaf-file-name="qyWechat.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49905124">
-              <caret line="1669" column="30" selection-start-line="1669" selection-start-column="30" selection-end-line="1669" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.33269963">
+              <caret line="1670" column="34" selection-start-line="1670" selection-start-column="34" selection-end-line="1670" selection-end-column="34" />
               <folding>
-                <marker date="1490601062000" expanded="true" signature="21973:22114" placeholder="..." />
+                <marker date="1490601210000" expanded="true" signature="21973:22114" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -439,7 +439,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="743" column="31" selection-start-line="743" selection-start-column="28" selection-end-line="743" selection-end-column="31" />
           <folding>
-            <marker date="1490601062000" expanded="true" signature="21973:22114" placeholder="..." />
+            <marker date="1490601210000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -496,7 +496,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding>
-            <marker date="1490601062000" expanded="true" signature="21973:22114" placeholder="..." />
+            <marker date="1490601210000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -553,7 +553,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490601062000" expanded="true" signature="21973:22114" placeholder="..." />
+            <marker date="1490601210000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -770,10 +770,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49905124">
-          <caret line="1669" column="30" selection-start-line="1669" selection-start-column="30" selection-end-line="1669" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.33269963">
+          <caret line="1670" column="34" selection-start-line="1670" selection-start-column="34" selection-end-line="1670" selection-end-column="34" />
           <folding>
-            <marker date="1490601062000" expanded="true" signature="21973:22114" placeholder="..." />
+            <marker date="1490601210000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>

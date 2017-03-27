@@ -1667,8 +1667,8 @@ class Wechat
             $appsecret = $this->appsecret;
         }
 
-        $mem = new Memcache();
-        $mem->connect("127.0.0.1", 11211);
+        $mem = new \Memcached();
+        $mem->addServer("localhost", 11211);
         @$mark_qy_time = $mem->get("mark_qy_test_time");
         $access_qy_token = $mem->get("access_qy_test_token");
         if (!$mark_qy_time || (time() - $mark_qy_time > 7200) || !$access_qy_token) {
