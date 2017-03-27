@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6946cf84-6172-45df-a36e-204380078019" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/qyWechat/qyWechat.php" afterPath="$PROJECT_DIR$/app/qyWechat/qyWechat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TokenController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TokenController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php" />
     </list>
     <ignored path="qywechat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qyWechat.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="qyWechat.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6891635">
-              <caret line="1677" column="25" selection-start-line="1677" selection-start-column="25" selection-end-line="1677" selection-end-column="25" />
+            <state vertical-scroll-proportion="-12.735849">
+              <caret line="1675" column="61" selection-start-line="1675" selection-start-column="61" selection-end-line="1675" selection-end-column="61" />
               <folding>
                 <marker date="1490601316000" expanded="true" signature="21973:22114" placeholder="..." />
               </folding>
@@ -49,8 +50,8 @@
       <file leaf-file-name="qyWechatController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.0">
-              <caret line="43" column="54" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+            <state vertical-scroll-proportion="-27.884615">
+              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="92" />
               <folding>
                 <element signature="e#42#70#0#PHP" expanded="true" />
               </folding>
@@ -78,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TokenController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TokenController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TokenController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.923077">
-              <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.48656163">
+              <caret line="21" column="92" selection-start-line="21" selection-start-column="92" selection-end-line="21" selection-end-column="92" />
               <folding>
                 <element signature="e#41#70#0#PHP" expanded="true" />
               </folding>
@@ -116,9 +117,9 @@
         <option value="$PROJECT_DIR$/vendor/overtrue/wechat/src/Foundation/Application.php" />
         <option value="$PROJECT_DIR$/vendor/overtrue/wechat/src/Core/AccessToken.php" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/qyWechat/qyWechat.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TokenController.php" />
-        <option value="$PROJECT_DIR$/app/qyWechat/qyWechat.php" />
       </list>
     </option>
   </component>
@@ -748,32 +749,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TokenController.php">
+    <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.923077">
-          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+        <state vertical-scroll-proportion="-12.735849">
+          <caret line="1675" column="61" selection-start-line="1675" selection-start-column="61" selection-end-line="1675" selection-end-column="61" />
           <folding>
-            <element signature="e#41#70#0#PHP" expanded="true" />
+            <marker date="1490601316000" expanded="true" signature="21973:22114" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.0">
-          <caret line="43" column="54" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+        <state vertical-scroll-proportion="-27.884615">
+          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="92" />
           <folding>
             <element signature="e#42#70#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TokenController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6891635">
-          <caret line="1677" column="25" selection-start-line="1677" selection-start-column="25" selection-end-line="1677" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.48656163">
+          <caret line="21" column="92" selection-start-line="21" selection-start-column="92" selection-end-line="21" selection-end-column="92" />
           <folding>
-            <marker date="1490601316000" expanded="true" signature="21973:22114" placeholder="..." />
+            <element signature="e#41#70#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
