@@ -35,7 +35,10 @@ class qyWechatController extends Controller
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
         $weObj = new \Wechat($options);
-        $weObj->valid();
+        $ret=$weObj->valid();
+        if (!$ret) {
+            \Log::info($ret);
+        }
         /*
         $f = $weObj->getRev()->getRevFrom();	//获取发送者微信号
         $t = $weObj->getRevType();				//获取发送的类型
