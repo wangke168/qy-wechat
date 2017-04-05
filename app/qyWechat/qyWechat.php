@@ -74,6 +74,8 @@ class Wechat
     public $errMsg = "no access";
     private $_logcallback;
 
+
+
     public function __construct($options)
     {
         $this->token = isset($options['token']) ? $options['token'] : '';
@@ -1666,20 +1668,20 @@ class Wechat
             $appid = $this->appid;
             $appsecret = $this->appsecret;
         }
-
+        $cacheKey="token".$this->token;
         $mem = new \Memcached();
         $mem->addServer("localhost", 11211);
-        @$mark_qy_time = $mem->get("mark_qy_test_time");
-        $access_qy_token = $mem->get("access_qy_test_token");
-        if (!$mark_qy_time || (time() - $mark_qy_time > 7200) || !$access_qy_token) {
+      //  @$mark_qy_time = $mem->get("mark_qy_test_time");
+        $access_qy_token = $mem->get($cacheKey);
+        if (!$access_qy_token) {
 
             $result = $this->http_get(self::API_URL_PREFIX . self::TOKEN_GET_URL . 'corpid=' . $appid . '&corpsecret=' . $appsecret);
             $data = json_decode($result, true);
 //            return $data;
             if ($data['access_token']) {
-                $mem->set("access_qy_test_token", $data['access_token'], 7200-1500);    //设置cache，为下一步提供依据
-                $mem->set("mark_qy_test_time", time(),  7200-1500);
-                $access_qy_token = $mem->get("access_qy_test_token");
+                $mem->set($cacheKey, $data['access_token'], 7200-1500);    //设置cache，为下一步提供依据
+    //            $mem->set("mark_qy_test_time", time(),  7200-1500);
+                $access_qy_token = $mem->get($cacheKey);
                 return $access_qy_token;
             } else {
                 return "获取access_token错误";
@@ -1690,6 +1692,7 @@ class Wechat
     }
 
 }
+
 
 
 /**
