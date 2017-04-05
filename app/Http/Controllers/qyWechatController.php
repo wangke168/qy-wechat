@@ -54,14 +54,14 @@ class qyWechatController extends Controller
         $t = $weObj->getRevType();				//获取发送的类型
         $d = $weObj->getRevData();				//获取发送的data
         $c = $weObj->getRevContent();			//获取发送的内容
-//        if ($t=="text")
-//        {
+        if ($t=="text")
+        {
 //            $c = $weObj->getRevContent();			//获取发送的内容
-           $weObj->text("你好！来自星星的：")->reply();
+//           $weObj->text("你好！来自星星的：")->reply();
 //            $c = $weObj->getRevContent();			//获取发送的内容
-//            $weObj->news($this->Check_tecket($c))->reply();
+            $weObj->news($this->Check_tecket($c))->reply();
 
-//        }
+        }
 //logg("-----------------------------------------");
 //        $weObj->valid();
 
