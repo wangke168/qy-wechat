@@ -28,13 +28,29 @@ class TglmController extends Controller
 		}
 
         $f = $weObj->getRev()->getRevFrom();	//获取发送者微信号
-        $t = $weObj->getRevType();				//获取发送的类型
+        $type = $weObj->getRevType();				//获取发送的类型
         $d = $weObj->getRevData();				//获取发送的data
         $c = $weObj->getRevContent();			//获取发送的内容
-        if ($t=="text")
-        {
-            // $weObj->news($this->Check_tecket($c))->reply();
-        	$weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
+
+        switch ($type) {
+        	case 'event':
+        		switch ($weObj->getRevEvent()) {
+        			case 'CLICK':
+        				$weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
+        				break;
+
+        			default:
+        				# code...
+        				break;
+        		}
+        		break;
+        	case 'text':
+        		$weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
+        	  break;
+        	default:
+        		# code...
+        		break;
         }
+
       }
     }
