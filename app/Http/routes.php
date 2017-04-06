@@ -10,4 +10,5 @@ Route::any('/jianpiao', 'JianPiao\JianPiaoController@index');
 
 Route::any('/tglm', 'Tglm\TglmController@index');
 
+
 Route::get('token','TokenController@get');
