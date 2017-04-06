@@ -34,7 +34,7 @@ class TglmController extends Controller
 
         switch ($type) {
         	case 'event':
-	        	switch ($weObj->getRev()->getRevEvent()) {
+	        	switch ($weObj->getRevData()->getRevEvent()) {
 	        		case 'CLICK':
 	        		$weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
 	        		break;
