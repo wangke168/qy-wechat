@@ -33,7 +33,7 @@ class TglmController extends Controller
         $c = $weObj->getRevContent();			//获取发送的内容
 
         switch ($type) {
-        	case \Wechat::MSGTYPE_EVENT::
+        	case 'event':
 
         				$weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
 
