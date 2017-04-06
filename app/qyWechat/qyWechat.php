@@ -1754,7 +1754,7 @@ class Prpcrypt
 {
     public $key;
 
-    function Prpcrypt($k)
+    function __construct($k)
     {
         $this->key = base64_decode($k . "=");
     }
