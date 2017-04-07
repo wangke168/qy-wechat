@@ -35,7 +35,7 @@ class TglmController extends Controller
         switch ($type) {
         	case 'event':
             $evnet_type = $weObj->getRevEvent();
-            $weObj->text($evnet_type['key'])->reply();
+            $weObj->text($evnet_type['event'])->reply();
 
 	        	// switch ($evnet_type['event']) {
 	        	// 	case 'CLICK':
