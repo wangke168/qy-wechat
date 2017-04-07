@@ -35,7 +35,7 @@ class TglmController extends Controller
         switch ($type) {
         	case 'event':
             $evnet_type = $weObj->getRevEvent();
-            $weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
+            $weObj->text($evnet_type['key'])->reply();
 
 	        	// switch ($evnet_type['event']) {
 	        	// 	case 'CLICK':
