@@ -46,10 +46,19 @@ class SendLdjlMessage extends Command
         @$allcount = $row1["allcount"];
 
         $hxcount = $row2["hxcount"];*/
+        $allcount=\DB::table('tour_project_wait_detail')
+            ->where('project_id','1')
+            ->whereDate('addtime','=',date("Y-m-d"))
+            ->count();
+        $hxcount=\DB::table('tour_project_wait_detail')
+            ->where('project_id','1')
+            ->where('used','1')
+            ->whereDate('addtime','=',date("Y-m-d"))
+            ->count();
 
 
-        $allcount=100;
-        $hxcount=50;
+        /*$allcount=100;
+        $hxcount=50;*/
         $title = date("Y-m-d") . "龙帝惊临微信预约数据汇总";
 
         $Description = "今天总预约人数为" . $allcount . ",核销人数为" . $hxcount . "。";

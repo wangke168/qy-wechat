@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6946cf84-6172-45df-a36e-204380078019" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php" afterPath="$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php" />
     </list>
     <ignored path="qywechat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6487488">
+            <state vertical-scroll-proportion="-26.923077">
               <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
               <folding>
                 <element signature="e#31#74#0#PHP" expanded="true" />
@@ -59,14 +58,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SendLdjlMessage.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SendLdjlMessage.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.5">
-              <caret line="13" column="43" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.6487488">
+              <caret line="53" column="37" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
               <folding>
-                <marker date="1491617073000" expanded="true" signature="689:802" placeholder="select count..tour_project_wait_detail..." />
-                <marker date="1491617073000" expanded="true" signature="901:1028" placeholder="select count..tour_project_wait_detail..." />
+                <marker date="1491617715000" expanded="true" signature="689:802" placeholder="select count..tour_project_wait_detail..." />
+                <marker date="1491617715000" expanded="true" signature="901:1028" placeholder="select count..tour_project_wait_detail..." />
               </folding>
             </state>
           </provider>
@@ -136,8 +135,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/JianPiao/JianPiaoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php" />
       </list>
     </option>
   </component>
@@ -918,23 +917,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php">
+    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="43" />
+        <state vertical-scroll-proportion="-26.923077">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
           <folding>
-            <marker date="1491617073000" expanded="true" signature="689:802" placeholder="select count..tour_project_wait_detail..." />
-            <marker date="1491617073000" expanded="true" signature="901:1028" placeholder="select count..tour_project_wait_detail..." />
+            <element signature="e#31#74#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6487488">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+          <caret line="53" column="37" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
           <folding>
-            <element signature="e#31#74#0#PHP" expanded="true" />
+            <marker date="1491617715000" expanded="true" signature="689:802" placeholder="select count..tour_project_wait_detail..." />
+            <marker date="1491617715000" expanded="true" signature="901:1028" placeholder="select count..tour_project_wait_detail..." />
           </folding>
         </state>
       </provider>
