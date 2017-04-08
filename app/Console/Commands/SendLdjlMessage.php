@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-
+use DB;
 class SendLdjlMessage extends Command
 {
     /**
@@ -46,11 +46,11 @@ class SendLdjlMessage extends Command
         @$allcount = $row1["allcount"];
 
         $hxcount = $row2["hxcount"];*/
-        $allcount=\DB::table('tour_project_wait_detail')
+        $allcount=DB::table('tour_project_wait_detail')
             ->where('project_id','1')
             ->whereDate('addtime','=',date("Y-m-d"))
             ->count();
-        $hxcount=\DB::table('tour_project_wait_detail')
+        $hxcount=DB::table('tour_project_wait_detail')
             ->where('project_id','1')
             ->where('used','1')
             ->whereDate('addtime','=',date("Y-m-d"))
@@ -76,7 +76,7 @@ class SendLdjlMessage extends Command
                         "title" => $title,
                         "description" => $Description,
                         "url" => "http://weix2.hengdianworld.com/enterprise/article/articledetail_ldjl.php?date=".date("Y-m-d"),
-                        "picurl" => "http://weix.hengdianworld.com/control/editor/attached/image/20160412/20160412103944_30797.jpg",
+                        "picurl" => "https://weix.hengdianworld.com/images/ldjl_data.jpg",
                     ),
                 ]
             ),
