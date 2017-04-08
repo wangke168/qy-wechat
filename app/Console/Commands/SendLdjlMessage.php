@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use DB;
+
 class SendLdjlMessage extends Command
 {
     /**
@@ -37,15 +38,6 @@ class SendLdjlMessage extends Command
      */
     public function handle()
     {
- /*       $row1 = $db->row("select count(*) as allcount from tour_project_wait_detail where project_id=:project_id and date(addtime)=:addtime",
-            array("project_id" => "1", "addtime" => date("Y-m-d")));
-
-        $row2 = $db->row("select count(*) as hxcount from tour_project_wait_detail where project_id=:project_id and used=:used and date(addtime)=:addtime",
-            array("project_id" => "1", "used" => "1", "addtime" => date("Y-m-d")));
-
-        @$allcount = $row1["allcount"];
-
-        $hxcount = $row2["hxcount"];*/
         $allcount=DB::table('tour_project_wait_detail')
             ->where('project_id','1')
             ->whereDate('addtime','=',date("Y-m-d"))
@@ -56,9 +48,6 @@ class SendLdjlMessage extends Command
             ->whereDate('addtime','=',date("Y-m-d"))
             ->count();
 
-
-        /*$allcount=100;
-        $hxcount=50;*/
         $title = date("Y-m-d") . "龙帝惊临微信预约数据汇总";
 
         $Description = "今天总预约人数为" . $allcount . ",核销人数为" . $hxcount . "。";
@@ -93,7 +82,7 @@ class SendLdjlMessage extends Command
 //    'Secret' => '8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea'
 
         );
-        $aaa = new \Wechat($options);
-        $aaa->sendMessage($date);
+        $weObj = new \Wechat($options);
+        $weObj->sendMessage($date);
     }
 }
