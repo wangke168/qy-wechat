@@ -14,12 +14,12 @@ class TglmController extends Controller
     {
         $this->options = array(
             'token' => env('QY_WECHAT_TGLM_TOEKN', 'token'),  //填写应用接口的Token
-            'encodingaeskey' => 'UwZuYaFyIM0LKrWhDzdEscKauy6sAU0whvDJjCH65OE',//填写加密用的EncodingAESKey
-            'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
-            'appsecret' => '8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea',
-            'debug' => true,
-            'logcallback' => 'logg',
-            'agentid' => '7', //应用的id
+            'encodingaeskey' => env('QY_WECHAT_TGLM_ENCODINGAESKEY', 'encodingaeskey'), //填写加密用的EncodingAESKey
+            'appid' => env('QY_APPID', 'appid'),   //填写高级调用功能的appid
+            'appsecret' => env('QY_APPSECRET', 'appsecret'),
+            'debug' => env('QY_DEBUG', 'debug'),
+            'logcallback' => env('QY_LOGCALLBACK', 'logcallback'),
+            'agentid' => env('QY_WECHAT_TGLM_AGENTID', 'agentid'), //应用的id
         );
     }
     public function index()
@@ -49,8 +49,6 @@ class TglmController extends Controller
         switch ($type) {
             case 'event':
                 $evnet_type = $weObj->getRevEvent();
-                // $weObj->text($evnet_type['event'])->reply();
-
                 switch ($evnet_type['event']) {
                     case 'click':
                         $weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
