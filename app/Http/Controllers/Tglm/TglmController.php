@@ -88,7 +88,7 @@ class TglmController extends Controller
                 "0" => array(
                     'Title' => '点击进入管理后台',
                     'Description' => '',
-                    'PicUrl' => 'http://weix4.hengdianworld.com/tglm/images/htgl.jpg',
+                    'PicUrl' => '//images/htgl.jpg',
                     'Url' => 'http://e.hengdianworld.com/mobile/Agent/agent.aspx?uid=' . $uid
                 )
             );

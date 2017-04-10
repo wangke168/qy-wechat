@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6946cf84-6172-45df-a36e-204380078019" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php" />
     </list>
     <ignored path="qywechat.iws" />
@@ -96,7 +95,7 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-14.423077">
               <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
               <folding />
             </state>
@@ -106,12 +105,12 @@
       <file leaf-file-name="TglmController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49676225">
-              <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.653099">
+              <caret line="88" column="42" selection-start-line="88" selection-start-column="42" selection-end-line="88" selection-end-column="42" />
               <folding>
                 <element signature="e#45#73#0#PHP" expanded="true" />
-                <marker date="1491793865000" expanded="true" signature="2287:2396" placeholder="select * fro..wx_qrscene_info..." />
-                <marker date="1491793865000" expanded="true" signature="2338:2394" placeholder="SELECT event..qyh_user_info..." />
+                <marker date="1491812222000" expanded="true" signature="2287:2396" placeholder="select * fro..wx_qrscene_info..." />
+                <marker date="1491812222000" expanded="true" signature="2338:2394" placeholder="SELECT event..qyh_user_info..." />
               </folding>
             </state>
           </provider>
@@ -898,14 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -934,14 +925,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.423077">
+          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49676225">
-          <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.653099">
+          <caret line="88" column="42" selection-start-line="88" selection-start-column="42" selection-end-line="88" selection-end-column="42" />
           <folding>
             <element signature="e#45#73#0#PHP" expanded="true" />
-            <marker date="1491793865000" expanded="true" signature="2287:2396" placeholder="select * fro..wx_qrscene_info..." />
-            <marker date="1491793865000" expanded="true" signature="2338:2394" placeholder="SELECT event..qyh_user_info..." />
+            <marker date="1491812222000" expanded="true" signature="2287:2396" placeholder="select * fro..wx_qrscene_info..." />
+            <marker date="1491812222000" expanded="true" signature="2338:2394" placeholder="SELECT event..qyh_user_info..." />
           </folding>
         </state>
       </provider>
