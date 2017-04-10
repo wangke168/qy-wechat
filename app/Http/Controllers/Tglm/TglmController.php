@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Wechat;
+use DB;
 
 class TglmController extends Controller
 {
@@ -43,8 +44,15 @@ class TglmController extends Controller
                 $evnet_type = $weObj->getRevEvent();
                 switch ($evnet_type['event']) {
                     case 'click':
-                        $weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
-                        // $weObj->news(response_news($evnet_type['key']))->reply();
+                        switch ($evnet_type['key']) {
+                            case "3001":
+                                $weObj->news($this->response_manage($f))->reply();
+                                break;
+                            default:
+                                $weObj->text("你好！功能正在升级中，请稍后尝试")->reply();
+                                break;
+                        }
+
                         break;
                     default:
                         // 		# code...
@@ -59,6 +67,42 @@ class TglmController extends Controller
                 break;
         }
 
+    }
+
+    private function response_manage($f)
+
+    {
+
+
+ /*       $row = $db->row("select * from wx_qrscene_info WHERE qrscene_id = ( SELECT eventkey FROM qyh_user_info WHERE userid =:userid )",
+            array("userid" => $f));*/
+
+        $row=DB::table('wx_qrscene_info')
+            ->join('qyh_user_info',function($join)use($f){
+                $join->on('wx_qrscene_info.qrscene_id','=','qyh_user_info.eventkey')
+                    ->where('qyh_user_info.userid','=',$f);
+            })->first();
+        @$uid = $row->uid;
+        if ($uid) {
+            $newsData = array(
+                "0" => array(
+                    'Title' => '点击进入管理后台',
+                    'Description' => '',
+                    'PicUrl' => 'http://weix4.hengdianworld.com/tglm/images/htgl.jpg',
+                    'Url' => 'http://e.hengdianworld.com/mobile/Agent/agent.aspx?uid=' . $uid
+                )
+            );
+        } else {
+            $newsData = array(
+                "0" => array(
+                    'Title' => '请先等待申请通过',
+                    'Description' => '您需要先申请开通推广联盟帐号。',
+                    'PicUrl' => 'http://weix4.hengdianworld.com/tglm/images/nsqlm.jpg',
+                    'Url' => 'http://weix4.hengdianworld.com/article/articledetail.php?id=139'
+                )
+            );
+        }
+        return $newsData;
     }
 
     public function sendmessage($sellid)
