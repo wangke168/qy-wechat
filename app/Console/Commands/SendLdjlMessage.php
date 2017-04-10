@@ -73,14 +73,12 @@ class SendLdjlMessage extends Command
         );
 
         $options = array(
-            'token' => 'message',    //填写应用接口的Token
-            'encodingaeskey' => 'pgqNTJsXjdzDOaP0DD1jlzyW5sqNIR9anCX247GR1zf',//填写加密用的EncodingAESKey
-            'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
-            'appsecret' => '8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea',
-            'debug' => true,
-            'logcallback' => 'logg',
-//    'Secret' => '8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea'
-
+            'token' => env('QY_WECHAT_MESSAGE_TOEKN', 'token'),    //填写应用接口的Token
+            'encodingaeskey' => env('QY_WECHAT_MESSAGE_ENCODINGAESKEY', 'encodingaeskey'),//填写加密用的EncodingAESKey
+            'appid' => env('QY_WECHAT_APPID', 'appid'),   //填写高级调用功能的appid
+            'appsecret' => env('QY_WECHAT_APPSECRET', 'appsecret'),
+            'debug' => env('QY_WECHAT_DEBUG', 'debug'),
+            'logcallback' => env('QY_WECHAT_LOGCALLBACK', 'logcallback'),
         );
         $weObj = new \Wechat($options);
         $weObj->sendMessage($date);
