@@ -13,7 +13,7 @@ class TglmController extends Controller
     public function __construct()
     {
         $this->options = array(
-            'token' => 'tuiguanglianmeng',    //填写应用接口的Token
+            'token' => env('QY_WECHAT_TGLM_TOEKN', 'token'),  //填写应用接口的Token
             'encodingaeskey' => 'UwZuYaFyIM0LKrWhDzdEscKauy6sAU0whvDJjCH65OE',//填写加密用的EncodingAESKey
             'appid' => 'wx6bb8b192d1dcfe19',    //填写高级调用功能的appid
             'appsecret' => '8-ma2YdRHCrYsBl5Mw0vSFEegXTyxMk1OCQQzfBIhnwOrWY6rnCjXb0Nv0pz5Pea',
