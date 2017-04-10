@@ -88,7 +88,7 @@ class TglmController extends Controller
                 "0" => array(
                     'Title' => '点击进入管理后台',
                     'Description' => '',
-                    'PicUrl' => '//images/htgl.jpg',
+                    'PicUrl' => "http://" . $_SERVER['HTTP_HOST'] . "/images/htgl.jpg",
                     'Url' => 'http://e.hengdianworld.com/mobile/Agent/agent.aspx?uid=' . $uid
                 )
             );
@@ -97,7 +97,7 @@ class TglmController extends Controller
                 "0" => array(
                     'Title' => '请先等待申请通过',
                     'Description' => '您需要先申请开通推广联盟帐号。',
-                    'PicUrl' => 'http://weix4.hengdianworld.com/tglm/images/nsqlm.jpg',
+                    'PicUrl' => "http://" . $_SERVER['HTTP_HOST'] . "/images/nsqlm.jpg",
                     'Url' => 'http://weix4.hengdianworld.com/article/articledetail.php?id=139'
                 )
             );
