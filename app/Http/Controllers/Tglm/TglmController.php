@@ -130,22 +130,88 @@ class TglmController extends Controller
 
         //    $str=$str."姓名：".$name."   电话：".$tel."\n";
         if ($ticketcount <> 0) {
-            $str = "您好，该客人的预订信息如下\n注意，若是联票+梦幻谷或者三点+梦幻谷的门票仍然需要身份证检票\n";
-            for ($j = 0; $j < $ticketcount; $j++) {
-                $i = $i + 1;
-                $str = $str . "\n订单" . $i;
-                $str = $str . "\n姓名：" . $data['ticketorder'][$j]['name'];
-                $str = $str . "\n订单号:" . $data['ticketorder'][$j]['sellid'];
-                $str = $str . "\n预达日期:" . $data['ticketorder'][$j]['date2'];
-                $str = $str . "\n预购景点:" . $data['ticketorder'][$j]['ticket'];
-                $str = $str . "\n人数:" . $data['ticketorder'][$j]['numbers'];
-                if ($data['ticketorder'][$j]['ticket'] == '三大点+梦幻谷' || $data['ticketorder'][$j]['ticket'] == '网络联票+梦幻谷') {
-                    $str = $str . "\n注意：该票种需要身份证检票";
-                } else {
-                    $str = $str . "\n订单识别码:" . $data['ticketorder'][$j]['code'] . "（在检票口出示此识别码可直接进入景区。）";
-                }
-                $str = $str . "\n订单状态:" . $data['ticketorder'][$j]['flag'] . "\n";
-            }
+            $title='您有新门票订单';
+            //      for ($j = 0; $j < $ticketcount; $j++) {
+            //       $i = $i + 1;
+            $str = "订单详情";
+            //    $str = $str . "\n姓名：" . $data['ticketorder'][$j]['name'];
+            $str = $str . "\n订单号:" . $data['ticketorder'][0]['sellid'];
+            //    $str = $str . "\n预达日期:" . $data['ticketorder'][$j]['date2'];
+            $str = $str . "\n预购景点:" . $data['ticketorder'][0]['ticket'];
+            $str = $str . "\n人数:" . $data['ticketorder'][0]['numbers'];
+            /*        if ($data['ticketorder'][$j]['ticket'] == '三大点+梦幻谷' || $data['ticketorder'][$j]['ticket'] == '网络联票+梦幻谷') {
+                        $str = $str . "\n注意：该票种需要身份证检票";
+                    } else {
+                        $str = $str . "\n订单识别码:" . $data['ticketorder'][$j]['code'] . "（在检票口出示此识别码可直接进入景区。）";
+                    }*/
+            //      $str = $str . "\n订单状态:" . $data['ticketorder'][$j]['flag'] . "\n";
+            //       }
+        }
+        elseif($inclusivecount<>0)
+        {
+            $title='您有新套餐订单';
+//            $i = $i + 1;
+            $str = "订单详情";
+            //    $str = $str . "\n姓名：" . $data['ticketorder'][0]['name'];
+            $str = $str . "\n订单号:" . $data['inclusiveorder'][0]['sellid'];
+            //    $str = $str . "\n预达日期:" . $data['inclusiveorder'][0]['date2'];
+            $str = $str . "\n预购景点:" . $data['inclusiveorder'][0]['ticket'];
+            $str = $str . "\n人数:" . $data['inclusiveorder'][0]['numbers'];
+        }
+        elseif($hotelcount<>0)
+        {
+            $title='您有新酒店订单';
+            $str = "订单详情";
+            //    $str = $str . "\n姓名：" . $data['ticketorder'][0]['name'];
+            $str = $str . "\n订单号:" . $data['$hotelcount'][0]['sellid'];
+            //    $str = $str . "\n预达日期:" . $data['inclusiveorder'][0]['date2'];
+            $str = $str . "\n入住酒店:" . $data['$hotelcount'][0]['hotel'];
+            $str = $str . "\n间数:" . $data['$hotelcount'][0]['numbers'];
+            $str = $str . "\n天数:" . $data['$hotelcount'][0]['days'];
+
+        } $i = 0;
+
+        //    $str=$str."姓名：".$name."   电话：".$tel."\n";
+        if ($ticketcount <> 0) {
+            $title='您有新门票订单';
+            //      for ($j = 0; $j < $ticketcount; $j++) {
+            //       $i = $i + 1;
+            $str = "订单详情";
+            //    $str = $str . "\n姓名：" . $data['ticketorder'][$j]['name'];
+            $str = $str . "\n订单号:" . $data['ticketorder'][0]['sellid'];
+            //    $str = $str . "\n预达日期:" . $data['ticketorder'][$j]['date2'];
+            $str = $str . "\n预购景点:" . $data['ticketorder'][0]['ticket'];
+            $str = $str . "\n人数:" . $data['ticketorder'][0]['numbers'];
+            /*        if ($data['ticketorder'][$j]['ticket'] == '三大点+梦幻谷' || $data['ticketorder'][$j]['ticket'] == '网络联票+梦幻谷') {
+                        $str = $str . "\n注意：该票种需要身份证检票";
+                    } else {
+                        $str = $str . "\n订单识别码:" . $data['ticketorder'][$j]['code'] . "（在检票口出示此识别码可直接进入景区。）";
+                    }*/
+            //      $str = $str . "\n订单状态:" . $data['ticketorder'][$j]['flag'] . "\n";
+            //       }
+        }
+        elseif($inclusivecount<>0)
+        {
+            $title='您有新套餐订单';
+//            $i = $i + 1;
+            $str = "订单详情";
+            //    $str = $str . "\n姓名：" . $data['ticketorder'][0]['name'];
+            $str = $str . "\n订单号:" . $data['inclusiveorder'][0]['sellid'];
+            //    $str = $str . "\n预达日期:" . $data['inclusiveorder'][0]['date2'];
+            $str = $str . "\n预购景点:" . $data['inclusiveorder'][0]['ticket'];
+            $str = $str . "\n人数:" . $data['inclusiveorder'][0]['numbers'];
+        }
+        elseif($hotelcount<>0)
+        {
+            $title='您有新酒店订单';
+            $str = "订单详情";
+            //    $str = $str . "\n姓名：" . $data['ticketorder'][0]['name'];
+            $str = $str . "\n订单号:" . $data['$hotelcount'][0]['sellid'];
+            //    $str = $str . "\n预达日期:" . $data['inclusiveorder'][0]['date2'];
+            $str = $str . "\n入住酒店:" . $data['$hotelcount'][0]['hotel'];
+            $str = $str . "\n间数:" . $data['$hotelcount'][0]['numbers'];
+            $str = $str . "\n天数:" . $data['$hotelcount'][0]['days'];
+
         }
 
         $newsData = array(
@@ -166,7 +232,7 @@ class TglmController extends Controller
             "news" => array(            //不支持保密
                 "articles" => [
                     array(
-                        "title" => '有新订单',
+                        "title" => $title,
                         "description" => $str,
                         "url" => "http://weix2.hengdianworld.com/enterprise/article/articledetail_ldjl.php?date=".date("Y-m-d"),
                   //      "picurl" => "https://weix.hengdianworld.com/images/ldjl_data.jpg",
