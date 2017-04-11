@@ -107,6 +107,79 @@ class TglmController extends Controller
 
     public function sendmessage(Request $request)
     {
-        dd($request->all());
+        $sellid=$request->input('sellid');
+        $eventkey=$request->input('sellid');
+       $this->Check_tecket('V1704100714','thin_pig');
     }
+
+    private function Check_tecket($sellid,$userid)
+    {
+        $url = "http://e.hengdianworld.com/searchorder_json.aspx?sellid=" . $sellid;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        $json = curl_exec($ch);
+        $data = json_decode($json, true);
+        $ticketcount = count($data['ticketorder']);
+        $inclusivecount = count($data['inclusiveorder']);
+        $hotelcount = count($data['hotelorder']);
+
+
+        $i = 0;
+
+        //    $str=$str."姓名：".$name."   电话：".$tel."\n";
+        if ($ticketcount <> 0) {
+            $str = "您好，该客人的预订信息如下\n注意，若是联票+梦幻谷或者三点+梦幻谷的门票仍然需要身份证检票\n";
+            for ($j = 0; $j < $ticketcount; $j++) {
+                $i = $i + 1;
+                $str = $str . "\n订单" . $i;
+                $str = $str . "\n姓名：" . $data['ticketorder'][$j]['name'];
+                $str = $str . "\n订单号:" . $data['ticketorder'][$j]['sellid'];
+                $str = $str . "\n预达日期:" . $data['ticketorder'][$j]['date2'];
+                $str = $str . "\n预购景点:" . $data['ticketorder'][$j]['ticket'];
+                $str = $str . "\n人数:" . $data['ticketorder'][$j]['numbers'];
+                if ($data['ticketorder'][$j]['ticket'] == '三大点+梦幻谷' || $data['ticketorder'][$j]['ticket'] == '网络联票+梦幻谷') {
+                    $str = $str . "\n注意：该票种需要身份证检票";
+                } else {
+                    $str = $str . "\n订单识别码:" . $data['ticketorder'][$j]['code'] . "（在检票口出示此识别码可直接进入景区。）";
+                }
+                $str = $str . "\n订单状态:" . $data['ticketorder'][$j]['flag'] . "\n";
+            }
+        } else {
+            $str = "该手机号下无门票订单";
+        }
+        $newsData = array(
+            "0" => array(
+                'Title' => '查询结果',
+                'Description' => $str,
+                'Url' => 'http://weix2.hengdianworld.com/article/articledetail.php?id=44'
+            )
+        );
+
+        $date = array(
+            'touser' => $userid,
+            "toparty" => "",
+            "totag" => "",
+            'agentid' => '6',    //应用id
+            'msgtype' => 'news',  //根据信息类型，选择下面对应的信息结构体
+
+            "news" => array(            //不支持保密
+                "articles" => [
+                    array(
+                        "title" => '有新订单',
+                        "description" => $str,
+                        "url" => "http://weix2.hengdianworld.com/enterprise/article/articledetail_ldjl.php?date=".date("Y-m-d"),
+                  //      "picurl" => "https://weix.hengdianworld.com/images/ldjl_data.jpg",
+                    ),
+                ]
+            ),
+
+        );
+        $weObj = new Wechat($this->options);
+//        $weObj->news($this->Check_tecket($sellid))->reply();
+        $weObj->sendMessage($date);
+//        return $newsData;
+    }
+
 }
