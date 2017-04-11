@@ -109,7 +109,7 @@ class TglmController extends Controller
     {
         $sellid=$request->input('sellid');
         $eventkey=$request->input('sellid');
-       $this->Check_tecket('V1704100714','thin_pig');
+       $this->Check_tecket($sellid,'thin_pig');
     }
 
     private function Check_tecket($sellid,$userid)
