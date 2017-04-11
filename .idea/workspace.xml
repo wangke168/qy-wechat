@@ -70,15 +70,25 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="TglmController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.4365153">
-              <caret line="140" column="62" selection-start-line="140" selection-start-column="62" selection-end-line="140" selection-end-column="62" />
+            <state vertical-scroll-proportion="1.3707136">
+              <caret line="181" column="5" selection-start-line="181" selection-start-column="5" selection-end-line="181" selection-end-column="5" />
               <folding>
                 <element signature="e#45#73#0#PHP" expanded="true" />
-                <marker date="1491900524000" expanded="true" signature="2287:2396" placeholder="select * fro..wx_qrscene_info..." />
-                <marker date="1491900524000" expanded="true" signature="2338:2394" placeholder="SELECT event..qyh_user_info..." />
+                <marker date="1491900763000" expanded="true" signature="2287:2396" placeholder="select * fro..wx_qrscene_info..." />
+                <marker date="1491900763000" expanded="true" signature="2338:2394" placeholder="SELECT event..qyh_user_info..." />
               </folding>
             </state>
           </provider>
@@ -865,14 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.423077">
@@ -909,14 +911,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.4365153">
-          <caret line="140" column="62" selection-start-line="140" selection-start-column="62" selection-end-line="140" selection-end-column="62" />
+        <state vertical-scroll-proportion="1.3707136">
+          <caret line="181" column="5" selection-start-line="181" selection-start-column="5" selection-end-line="181" selection-end-column="5" />
           <folding>
             <element signature="e#45#73#0#PHP" expanded="true" />
-            <marker date="1491900524000" expanded="true" signature="2287:2396" placeholder="select * fro..wx_qrscene_info..." />
-            <marker date="1491900524000" expanded="true" signature="2338:2394" placeholder="SELECT event..qyh_user_info..." />
+            <marker date="1491900763000" expanded="true" signature="2287:2396" placeholder="select * fro..wx_qrscene_info..." />
+            <marker date="1491900763000" expanded="true" signature="2338:2394" placeholder="SELECT event..qyh_user_info..." />
           </folding>
         </state>
       </provider>
