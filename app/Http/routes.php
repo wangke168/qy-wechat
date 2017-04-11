@@ -13,4 +13,4 @@ Route::any('/tglm', 'Tglm\TglmController@index');
 Route::get('token','TokenController@get');
 
 //自动推送成功订单到推广联盟组
-//Route::get('/sendmessage/tglm/{sellid}','Tglm\TglmController@sendmessage');
+Route::post('/sendmessage/tglm','Tglm\TglmController@sendmessage');

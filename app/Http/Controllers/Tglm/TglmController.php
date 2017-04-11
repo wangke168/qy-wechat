@@ -105,8 +105,8 @@ class TglmController extends Controller
         return $newsData;
     }
 
-    public function sendmessage($sellid)
+    public function sendmessage(Request $request)
     {
-
+        dd($request->all());
     }
 }
