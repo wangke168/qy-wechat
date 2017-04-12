@@ -108,11 +108,12 @@ class TglmController extends Controller
     public function sendmessage(Request $request)
     {
         $sellid=$request->input('sellid');
-        $eventkey=$request->input('sellid');
-       $this->Check_tecket($sellid,'thin_pig');
+        $userid=$request->input('userid');
+        $uid=$request->input('uid');
+       $this->Check_tecket($sellid,$userid,$uid);
     }
 
-    private function Check_tecket($sellid,$userid)
+    private function Check_tecket($sellid,$userid,$uid)
     {
         $url = "http://e.hengdianworld.com/searchorder_json.aspx?sellid=" . $sellid;
         $ch = curl_init();
@@ -234,7 +235,7 @@ class TglmController extends Controller
                     array(
                         "title" => $title,
                         "description" => $str,
-                        "url" => "http://weix2.hengdianworld.com/enterprise/article/articledetail_ldjl.php?date=".date("Y-m-d"),
+                        "url" => "http://e.hengdianworld.com/mobile/Agent/agent.aspx?uid=" . $uid,
                   //      "picurl" => "https://weix.hengdianworld.com/images/ldjl_data.jpg",
                     ),
                 ]
