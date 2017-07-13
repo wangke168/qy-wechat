@@ -45,19 +45,18 @@ class TestController extends Controller
         );
 
         $options = array(
-            'token'=>'message',	//填写应用接口的Token
-            'encodingaeskey'=>'WCxIFRQklmN6lYfo07FAFHiD6agHoXRkzvuNiLU2lXm',//填写加密用的EncodingAESKey
-            'appid'=>'wx6bb8b192d1dcfe19',	//填写高级调用功能的appid
-            'appsecret'=>'saP46WYOPBSRPLgPRN3DwsX3DH74iGT43sFjKVXu1Ak',
-            'debug'=>false,
-            'logcallback'=>'logg',
-            'agentid' => '6', //应用的id
-
+            'token' => env('QY_WECHAT_MESSAGE_TOEKN', 'token'),    //填写应用接口的Token
+            'encodingaeskey' => env('QY_WECHAT_MESSAGE_ENCODINGAESKEY', 'encodingaeskey'),//填写加密用的EncodingAESKey
+            'appid' => env('QY_WECHAT_APPID', 'appid'),   //填写高级调用功能的appid
+            'appsecret' => env('QY_WECHAT_MESSAGE_APPSECRET', 'appsecret'),
+            'debug' => env('QY_WECHAT_DEBUG', 'debug'),
+            'logcallback' => env('QY_WECHAT_LOGCALLBACK', 'logcallback'),
+            'agentid' => env('QY_WECHAT_MESSAGE_AGENTID', 'agentid'), //应用的id
         );
         $weObj = new \Wechat($options);
 
         $weObj->sendMessage($date);
 
-        echo($date);
+      
     }
 }
