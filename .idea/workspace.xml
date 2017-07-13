@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6946cf84-6172-45df-a36e-204380078019" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php" afterPath="$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
     </list>
     <ignored path="qywechat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SendLdjlMessage.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.68525517">
+              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SendLdjlMessage.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8149861">
-              <caret line="78" column="59" selection-start-line="78" selection-start-column="59" selection-end-line="78" selection-end-column="59" />
+            <state vertical-scroll-proportion="-12.730769">
+              <caret line="55" column="33" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
               <folding>
                 <element signature="e#40#71#0#PHP" expanded="true" />
               </folding>
@@ -145,7 +155,6 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/JianPiao/JianPiaoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
@@ -157,6 +166,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/TestController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Tglm/TglmController.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php" />
+        <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
       </list>
     </option>
   </component>
@@ -855,16 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding>
-            <element signature="e#31#74#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -999,11 +999,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendLdjlMessage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8149861">
-          <caret line="78" column="59" selection-start-line="78" selection-start-column="59" selection-end-line="78" selection-end-column="59" />
+        <state vertical-scroll-proportion="-12.730769">
+          <caret line="55" column="33" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
           <folding>
             <element signature="e#40#71#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68525517">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

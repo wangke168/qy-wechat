@@ -53,7 +53,7 @@ class SendLdjlMessage extends Command
         $Description = "今天总预约人数为" . $allcount . ",核销人数为" . $hxcount . "。";
 
         $date = array(
-            'touser' => 'thin_pig|qwg_ldjl',
+            'touser' => 'thin_pig',
             "toparty" => "",
             "totag" => "",
             'agentid' => '6',    //应用id
