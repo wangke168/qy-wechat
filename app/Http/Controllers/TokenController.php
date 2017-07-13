@@ -29,4 +29,6 @@ class TokenController extends Controller
         $weObj = new \Wechat($options);
         var_dump( $weObj->checkAuth($appid='wx6bb8b192d1dcfe19',$appsecret='saP46WYOPBSRPLgPRN3DwsX3DH74iGT43sFjKVXu1Ak'));
     }
+
+
 }

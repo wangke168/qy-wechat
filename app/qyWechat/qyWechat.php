@@ -831,6 +831,7 @@ class Wechat
             return $rs;
         }
         $result = $this->http_get(self::API_URL_PREFIX.self::TOKEN_GET_URL.'corpid='.$appid.'&corpsecret='.$appsecret);
+        return $result;
         if ($result)
         {
             $json = json_decode($result,true);
@@ -844,7 +845,7 @@ class Wechat
             $this->setCache($authname,$this->access_token,$expire);
             return $this->access_token;
         }
-        return $result;
+        return false;
     }
     /**
      * 删除验证数据
