@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use DB;
-use Wechat;
+
 class TestController extends Controller
 {
     public function test()
@@ -48,16 +48,16 @@ class TestController extends Controller
             'token'=>'message',	//填写应用接口的Token
             'encodingaeskey'=>'WCxIFRQklmN6lYfo07FAFHiD6agHoXRkzvuNiLU2lXm',//填写加密用的EncodingAESKey
             'appid'=>'wx6bb8b192d1dcfe19',	//填写高级调用功能的appid
-            'appsecret'=>'H4AyKWaEQiUJg7fQ5abwqrTF_QbjlnzJ8AZlPC_Ll9CiAwote4G-mXOE6C9YDNtj',
+            'appsecret'=>'saP46WYOPBSRPLgPRN3DwsX3DH74iGT43sFjKVXu1Ak',
             'debug'=>false,
             'logcallback'=>'logg',
             'agentid' => '6', //应用的id
 
         );
-        $weObj = new Wechat($options);
+        $weObj = new \Wechat($options);
 
         $weObj->sendMessage($date);
 
-        var_dump($date);
+        echo($date);
     }
 }
