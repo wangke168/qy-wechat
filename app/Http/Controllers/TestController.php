@@ -52,7 +52,9 @@ class TestController extends Controller
             'logcallback' => env('QY_WECHAT_LOGCALLBACK', 'logcallback'),
         );
         $weObj = new \Wechat($options);
-       
+
         var_dump($weObj->sendMessage($date));
+
+        var_dump($date);
     }
 }
