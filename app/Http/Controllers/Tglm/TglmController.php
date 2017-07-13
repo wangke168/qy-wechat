@@ -18,7 +18,7 @@ class TglmController extends Controller
             'token' => env('QY_WECHAT_TGLM_TOEKN', 'token'),  //填写应用接口的Token
             'encodingaeskey' => env('QY_WECHAT_TGLM_ENCODINGAESKEY', 'encodingaeskey'), //填写加密用的EncodingAESKey
             'appid' => env('QY_WECHAT_APPID', 'appid'),   //填写高级调用功能的appid
-            'appsecret' => env('QY_WECHAT_APPSECRET', 'appsecret'),
+            'appsecret' => env('QY_WECHAT_TGLM_APPSECRET', 'appsecret'),
             'debug' => env('QY_WECHAT_DEBUG', 'debug'),
             'logcallback' => env('QY_WECHAT_LOGCALLBACK', 'logcallback'),
             'agentid' => env('QY_WECHAT_TGLM_AGENTID', 'agentid'), //应用的id
