@@ -29,9 +29,9 @@ class TestController extends Controller
             "toparty" => "",
             "totag" => "",
             'agentid' => '6',    //应用id
-            'msgtype' => 'mpnews',  //根据信息类型，选择下面对应的信息结构体
+            'msgtype' => 'news',  //根据信息类型，选择下面对应的信息结构体
 
-            "mpnews" => array(            //不支持保密
+            "news" => array(            //不支持保密
                 "articles" => [
                     array(
                         "title" => $title,

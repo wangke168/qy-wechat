@@ -17,10 +17,10 @@ class MessageController extends Controller
             'token' => env('QY_WECHAT_MESSAGE_TOEKN', 'token'),    //填写应用接口的Token
             'encodingaeskey' => env('QY_WECHAT_MESSAGE_ENCODINGAESKEY', 'encodingaeskey'),//填写加密用的EncodingAESKey
             'appid' => env('QY_WECHAT_APPID', 'appid'),   //填写高级调用功能的appid
-            'appsecret' => env('QY_WECHAT_APPSECRET', 'appsecret'),
+            'appsecret' => env('QY_WECHAT_MESSAGE_APPSECRET', 'appsecret'),
             'debug' => env('QY_WECHAT_DEBUG', 'debug'),
             'logcallback' => env('QY_WECHAT_LOGCALLBACK', 'logcallback'),
-            'agentid' => env('QY_WECHAT_JIANPIAO_AGENTID', '6'), //应用的id
+            'agentid' => env('QY_WECHAT_MESSAGE_AGENTID', 'agentid'), //应用的id
         );
     }
 
