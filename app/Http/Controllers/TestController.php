@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use DB;
+use Wechat;
 class TestController extends Controller
 {
     public function test()
@@ -28,9 +29,9 @@ class TestController extends Controller
             "toparty" => "",
             "totag" => "",
             'agentid' => '6',    //应用id
-            'msgtype' => 'news',  //根据信息类型，选择下面对应的信息结构体
+            'msgtype' => 'mpnews',  //根据信息类型，选择下面对应的信息结构体
 
-            "news" => array(            //不支持保密
+            "mpnews" => array(            //不支持保密
                 "articles" => [
                     array(
                         "title" => $title,
