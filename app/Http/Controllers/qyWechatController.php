@@ -59,7 +59,8 @@ class qyWechatController extends Controller
 //            $c = $weObj->getRevContent();			//获取发送的内容
 //           $weObj->text("你好！来自星星的：")->reply();
 //            $c = $weObj->getRevContent();			//获取发送的内容
-            $weObj->news($this->Check_tecket($c))->reply();
+//            $weObj->news($this->Check_tecket($c))->reply();
+            $weObj->sendMessage($this->Check_tecket($c));
 
         }
 //logg("-----------------------------------------");
