@@ -27,6 +27,6 @@ class TokenController extends Controller
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
         $weObj = new \Wechat($options);
-        return $weObj->get_access_token();
+        return $weObj->checkAuth();
     }
 }
