@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6946cf84-6172-45df-a36e-204380078019" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TokenController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TokenController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/qyWechat/qyWechat.php" afterPath="$PROJECT_DIR$/app/qyWechat/qyWechat.php" />
     </list>
     <ignored path="qywechat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,22 +34,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qyWechat.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="qyWechat.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.4716983">
-              <caret line="818" column="50" selection-start-line="818" selection-start-column="40" selection-end-line="818" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.91464597">
+              <caret line="846" column="22" selection-start-line="846" selection-start-column="22" selection-end-line="846" selection-end-column="22" />
               <folding>
-                <marker date="1491545000000" expanded="true" signature="25579:25720" placeholder="..." />
+                <marker date="1499919964000" expanded="true" signature="25579:25720" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TokenController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TokenController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TokenController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5907372">
+            <state vertical-scroll-proportion="-24.038462">
               <caret line="29" column="119" selection-start-line="29" selection-start-column="119" selection-end-line="29" selection-end-column="119" />
               <folding />
             </state>
@@ -154,7 +154,6 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/app/qyWechat/qyWechat.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/JianPiao/JianPiaoController.php" />
@@ -166,6 +165,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/qyWechatController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TestController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TokenController.php" />
+        <option value="$PROJECT_DIR$/app/qyWechat/qyWechat.php" />
       </list>
     </option>
   </component>
@@ -638,7 +638,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding>
-            <marker date="1491545000000" expanded="true" signature="25579:25720" placeholder="..." />
+            <marker date="1499919964000" expanded="true" signature="25579:25720" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -695,7 +695,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1491545000000" expanded="true" signature="25579:25720" placeholder="..." />
+            <marker date="1499919964000" expanded="true" signature="25579:25720" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -988,16 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4716983">
-          <caret line="818" column="50" selection-start-line="818" selection-start-column="40" selection-end-line="818" selection-end-column="50" />
-          <folding>
-            <marker date="1491545000000" expanded="true" signature="25579:25720" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TestController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-23.307692">
@@ -1010,9 +1000,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TokenController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5907372">
+        <state vertical-scroll-proportion="-24.038462">
           <caret line="29" column="119" selection-start-line="29" selection-start-column="119" selection-end-line="29" selection-end-column="119" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/qyWechat/qyWechat.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.91464597">
+          <caret line="846" column="22" selection-start-line="846" selection-start-column="22" selection-end-line="846" selection-end-column="22" />
+          <folding>
+            <marker date="1499919964000" expanded="true" signature="25579:25720" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -844,7 +844,7 @@ class Wechat
             $this->setCache($authname,$this->access_token,$expire);
             return $this->access_token;
         }
-        return false;
+        return $result;
     }
     /**
      * 删除验证数据
