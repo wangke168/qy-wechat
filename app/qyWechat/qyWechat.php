@@ -820,12 +820,13 @@ class Wechat
         if (!$appid || !$appsecret) {
             $appid = $this->appid;
             $appsecret = $this->appsecret;
+            $agentid=$this->agentid;
         }
         if ($token) { //手动指定token，优先使用
             $this->access_token=$token;
             return $this->access_token;
         }
-        $authname = 'qywechat_access_token'.$appid;
+        $authname = 'qywechat_access_token'.$agentid;
         if ($rs = $this->getCache($authname))  {
             $this->access_token = $rs;
             return $rs;
