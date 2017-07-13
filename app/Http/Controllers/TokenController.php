@@ -27,6 +27,6 @@ class TokenController extends Controller
         );
 //        logg("GET参数为：\n".var_export($_GET,true));
         $weObj = new \Wechat($options);
-        return $weObj->checkAuth();
+        return $weObj->checkAuth($appid='wx6bb8b192d1dcfe19',$appsecret='H4AyKWaEQiUJg7fQ5abwqrTF_QbjlnzJ8AZlPC_Ll9CiAwote4G-mXOE6C9YDNtj');
     }
 }
