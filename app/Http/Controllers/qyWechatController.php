@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use DB;
 class qyWechatController extends Controller
 {
     public function test()
@@ -71,68 +71,51 @@ class qyWechatController extends Controller
 //检票口
     private function Check_tecket($tel)
     {
-        //    $url="http://e.hengdianworld.com/searchorder_json.aspx?name=Anonymous&phone=".$tel;
-//	$json=file_get_contents("http://e.hengdianworld.com/searchorder_json.aspx?name=Anonymous&phone=".$tel);
+        $allcount=DB::table('tour_project_wait_detail')
+            ->where('project_id','1')
+            ->whereDate('addtime','=',date("Y-m-d"))
+            ->count();
+        $hxcount=DB::table('tour_project_wait_detail')
+            ->where('project_id','1')
+            ->where('used','1')
+            ->whereDate('addtime','=',date("Y-m-d"))
+            ->count();
 
-        /*
-            $json=http_request_json("http://e.hengdianworld.com/searchorder_json.aspx?name=Anonymous&phone=".$tel);
-            $data = json_decode($json,true);
-              $ticketcount = count($data['ticketorder']);
-            $inclusivecount = count($data['inclusiveorder']);
-            $hotelcount = count($data['hotelorder']);
-        */
+        $title = date("Y-m-d") . "龙帝惊临微信预约数据汇总";
 
-        $url = "http://e.hengdianworld.com/searchorder_json.aspx?name=Anonymous&phone=".$tel;
-        $ch = curl_init();
-        curl_setopt ($ch, CURLOPT_URL, $url);
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT,10);
-        $json = curl_exec($ch);
-        $data = json_decode($json,true);
-        $ticketcount = count($data['ticketorder']);
-        $inclusivecount = count($data['inclusiveorder']);
-        $hotelcount = count($data['hotelorder']);
+        $Description = "今天总预约人数为" . $allcount . ",核销人数为" . $hxcount . "。";
 
+        $date = array(
+            'touser' => 'thin_pig',
+            "toparty" => "",
+            "totag" => "",
+            'agentid' => '6',    //应用id
+            'msgtype' => 'news',  //根据信息类型，选择下面对应的信息结构体
 
-        $i=0;
+            "news" => array(            //不支持保密
+                "articles" => [
+                    array(
+                        "title" => $title,
+                        "description" => $Description,
+                        "url" => "http://weix2.hengdianworld.com/enterprise/article/articledetail_ldjl.php?date=".date("Y-m-d"),
+                        "picurl" => "https://weix.hengdianworld.com/images/ldjl_data.jpg",
+                    ),
+                ]
+            ),
 
-        //    $str=$str."姓名：".$name."   电话：".$tel."\n";
-        if ($ticketcount<>0)
-        {
-            $str="您好，该客人的预订信息如下\n注意，若是联票+梦幻谷或者三点+梦幻谷的门票仍然需要身份证检票\n";
-            for ($j=0; $j<$ticketcount; $j++)
-            {
-                $i=$i+1;
-                $str=$str."\n订单".$i;
-                $str=$str."\n姓名：".$data['ticketorder'][$j]['name'];
-                $str=$str."\n订单号:".$data['ticketorder'][$j]['sellid'];
-                $str=$str."\n预达日期:".$data['ticketorder'][$j]['date2'];
-                $str=$str."\n预购景点:".$data['ticketorder'][$j]['ticket'];
-                $str=$str."\n人数:".$data['ticketorder'][$j]['numbers'];
-                if ($data['ticketorder'][$j]['ticket']=='三大点+梦幻谷' || $data['ticketorder'][$j]['ticket']=='网络联票+梦幻谷')
-                {
-                    $str=$str."\n注意：该票种需要身份证检票";
-                }
-                else
-                {
-                    $str=$str."\n订单识别码:".$data['ticketorder'][$j]['code']."（在检票口出示此识别码可直接进入景区。）";
-                }
-                $str=$str."\n订单状态:".$data['ticketorder'][$j]['flag']."\n";
-            }
-        }
-        else
-        {
-            $str="该手机号下无门票订单";
-        }
-        $newsData= array(
-            "0"=>array(
-                'Title'=>'查询结果',
-                'Description'=>$str,
-//	   		'PicUrl'=>'http://qydev.weixin.qq.com/wiki/skins/common/images/weixin/weixin_wiki_logo.png',
-                'Url'=>'http://weix2.hengdianworld.com/article/articledetail.php?id=44'
-            )
         );
-        return $newsData;
+
+        return $date;
+   /*     $options = array(
+            'token' => env('QY_WECHAT_MESSAGE_TOEKN', 'token'),    //填写应用接口的Token
+            'encodingaeskey' => env('QY_WECHAT_MESSAGE_ENCODINGAESKEY', 'encodingaeskey'),//填写加密用的EncodingAESKey
+            'appid' => env('QY_WECHAT_APPID', 'appid'),   //填写高级调用功能的appid
+            'appsecret' => env('QY_WECHAT_APPSECRET', 'appsecret'),
+            'debug' => env('QY_WECHAT_DEBUG', 'debug'),
+            'logcallback' => env('QY_WECHAT_LOGCALLBACK', 'logcallback'),
+        );
+        $weObj = new \Wechat($options);
+        $weObj->sendMessage($date);*/
     }
 
 }
