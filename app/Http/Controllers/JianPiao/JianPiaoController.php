@@ -62,7 +62,8 @@ class JianPiaoController extends Controller
 
         //    $str=$str."姓名：".$name."   电话：".$tel."\n";
         if ($ticketcount <> 0) {
-            $str = "您好，该客人的预订信息如下\n注意，若是联票+梦幻谷或者三点+梦幻谷的门票仍然需要身份证检票\n";
+//            $str = "您好，该客人的预订信息如下\n注意，若是联票+梦幻谷或者三点+梦幻谷的门票仍然需要身份证检票\n";
+            $str = "您好，该客人的预订信息如下";
             for ($j = 0; $j < $ticketcount; $j++) {
                 $i = $i + 1;
                 $str = $str . "\n订单" . $i;
@@ -71,11 +72,11 @@ class JianPiaoController extends Controller
                 $str = $str . "\n预达日期:" . $data['ticketorder'][$j]['date2'];
                 $str = $str . "\n预购景点:" . $data['ticketorder'][$j]['ticket'];
                 $str = $str . "\n人数:" . $data['ticketorder'][$j]['numbers'];
-                if ($data['ticketorder'][$j]['ticket'] == '三大点+梦幻谷' || $data['ticketorder'][$j]['ticket'] == '网络联票+梦幻谷') {
+               /* if ($data['ticketorder'][$j]['ticket'] == '三大点+梦幻谷' || $data['ticketorder'][$j]['ticket'] == '网络联票+梦幻谷') {
                     $str = $str . "\n注意：该票种需要身份证检票";
-                } else {
+                } else {*/
                     $str = $str . "\n订单识别码:" . $data['ticketorder'][$j]['code'] . "（在检票口出示此识别码可直接进入景区。）";
-                }
+//                }
                 $str = $str . "\n订单状态:" . $data['ticketorder'][$j]['flag'] . "\n";
             }
         } else {
@@ -85,7 +86,7 @@ class JianPiaoController extends Controller
             "0" => array(
                 'Title' => '查询结果',
                 'Description' => $str,
-                'Url' => 'http://weix2.hengdianworld.com/article/articledetail.php?id=44'
+                'Url' => 'https://wechat.hdyuanmingxinyuan.com/article/detail?id=1482'
             )
         );
         return $newsData;
