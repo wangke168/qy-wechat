@@ -45,7 +45,8 @@ class JianPiaoController extends Controller
 
     private function Check_tecket($tel)
     {
-        $url = "http://e.hengdianworld.com/searchorder_json.aspx?name=Anonymous&phone=" . $tel;
+        $url= env('QY_WECHAT_JIANPIAO_URL', 'url');
+        $url = $url . $tel;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
