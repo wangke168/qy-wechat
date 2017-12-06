@@ -60,14 +60,12 @@ class CardController extends Controller
             $str = "您好，该客人的年卡信息如下";
             for ($j = 0; $j < $ticketcount; $j++) {
                 $i = $i + 1;
-                $str = $str . "\n订单" . $i;
+                $str = $str . "\n种类" . $i;
                 $str = $str . "\n姓名：" . $data['ticketorder'][$j]['name'];
                 $str = $str . "\n年卡类型:" . $data['ticketorder'][$j]['ticket'];
-                $str = $str . "\n年卡状态:" . $data['ticketorder'][$j]['content'];
-
-                $str = $str . "\n注意：已挂失及未发卡状态的年卡无法入园，如有疑问请致电057989600055。";
-
+                $str = $str . "\n年卡状态:" . $data['ticketorder'][$j]['content']."\n";
             }
+            $str = $str . "\n注意：已挂失及未发卡状态的年卡无法入园。\n\n如有疑问请致电057989600055。";
         } else {
             $str = "该身份证号下无年卡信息，如有疑问请致电057989600055。";
         }
