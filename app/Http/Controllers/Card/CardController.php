@@ -45,7 +45,7 @@ class CardController extends Controller
 
     private function CheckTicket($DID)
     {
-        $url= env('QY_WECHAT_CARD_URL', 'url');
+        $url = env('QY_WECHAT_CARD_URL', 'url');
         $url = $url . $DID;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -57,13 +57,14 @@ class CardController extends Controller
         $i = 0;
 
         if ($ticketcount <> 0) {
-            $str = "您好，该客人的年卡信息如下";
+            $str = "您好，该客人的年卡信息如下\n";
+            $str = "姓名：".$data['ticketorder'][0]['name']."\n";
             for ($j = 0; $j < $ticketcount; $j++) {
                 $i = $i + 1;
-                $str = $str . "\n种类" . $i;
-                $str = $str . "\n姓名：" . $data['ticketorder'][$j]['name'];
+//                $str = $str . "\n种类" . $i;
+//                $str = $str . "\n姓名：" . $data['ticketorder'][$j]['name'];
                 $str = $str . "\n年卡类型:" . $data['ticketorder'][$j]['ticket'];
-                $str = $str . "\n年卡状态:" . $data['ticketorder'][$j]['content']."\n";
+                $str = $str . "\n年卡状态:" . $data['ticketorder'][$j]['content'] . "\n";
             }
             $str = $str . "\n注意：已挂失及未发卡状态的年卡无法入园。\n\n如有疑问请致电057989600055。";
         } else {
