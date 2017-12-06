@@ -11,6 +11,42 @@ class TestController extends Controller
 {
     public function test()
     {
+//        return 'sd';
+        return $this->CheckTicket('33072419790329452x');
+    }
+    private function CheckTicket($DID)
+    {
+        $url= env('QY_WECHAT_CARD_URL', 'url');
+        $url = $url . $DID;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        $json = curl_exec($ch);
+        $data = json_decode($json, true);
+        $ticketcount = count($data['ticketorder']);
+        $i = 0;
+
+        if ($ticketcount <> 0) {
+            $str = "您好，该客人的年卡信息如下";
+            for ($j = 0; $j < $ticketcount; $j++) {
+                $i = $i + 1;
+                $str = $str . "\n订单" . $i;
+                $str = $str . "\n姓名：" . $data['ticketorder'][$j]['name'];
+                $str = $str . "\n年卡类型:" . $data['ticketorder'][$j]['ticket'];
+                $str = $str . "\n年卡状态:" . $data['ticketorder'][$j]['content'];
+
+                $str = $str . "\n注意：已挂失及未发卡状态的年卡无法入园，如有疑问请致电057989600055。";
+
+            }
+        } else {
+            $str = "该身份证号下无年卡信息，如有疑问请致电057989600055。";
+        }
+
+        return $str;
+    }
+    public function test1()
+    {
         $allcount=DB::table('tour_project_wait_detail')
             ->where('project_id','1')
             ->whereDate('addtime','=',date("Y-m-d"))
