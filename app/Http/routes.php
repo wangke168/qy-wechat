@@ -7,6 +7,7 @@ Route::get('/', function () {
 Route::any('/test', 'qyWechatController@test');
 Route::any('/temp', 'TestController@test');
 Route::any('/jianpiao', 'JianPiao\JianPiaoController@index');
+Route::any('/card', 'Card\CardController@index');
 Route::any('/message', 'Message\MessageController@index');
 Route::any('/tglm', 'Tglm\TglmController@index');
 
