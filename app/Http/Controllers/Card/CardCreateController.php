@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Wechat;
 use App\Http\Requests;
 
-class CardController extends Controller
+class CardCreateController extends Controller
 {
     public $options;
 
