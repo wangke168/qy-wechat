@@ -75,7 +75,7 @@ class JianPiaoController extends Controller
                /* if ($data['ticketorder'][$j]['ticket'] == '三大点+梦幻谷' || $data['ticketorder'][$j]['ticket'] == '网络联票+梦幻谷') {
                     $str = $str . "\n注意：该票种需要身份证检票";
                 } else {*/
-                    $str = $str . "\n订单识别码:" . $data['ticketorder'][$j]['code'] . "（在检票口出示此识别码可直接进入景区。）";
+                    $str = $str . "\n订单识别码:" . $data['ticketorder'][$j]['code'] ;
 //                }
                 $str = $str . "\n订单状态:" . $data['ticketorder'][$j]['flag'] . "\n";
             }
