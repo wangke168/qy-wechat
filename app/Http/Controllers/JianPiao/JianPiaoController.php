@@ -37,7 +37,7 @@ class JianPiaoController extends Controller
         $d = $weObj->getRevData();                //获取发送的data
         $c = $weObj->getRevContent();            //获取发送的内容
         if ($t == "text") {
-            $weObj->news($this->Check_tecket($c))->reply();
+            $weObj->text($this->Check_tecket($c))->reply();
 
         }
 
@@ -89,6 +89,7 @@ class JianPiaoController extends Controller
                 'Url' => 'https://wechat.hdyuanmingxinyuan.com/article/detail?id=1482'
             )
         );
-        return $newsData;
+//        return $newsData;
+        return $str;
     }
 }
